@@ -8,6 +8,12 @@ router.get('/', async function(req, res){
     res.end()
 })
 
+router.get('/:user', async function(req, res){
+    const users  = await User.find({username: req.params.user})
+    res.send(users)
+    res.end()
+})
+
 router.post('/', async function(req,res){    
     const user = new User(req.body)
     await user.save()
