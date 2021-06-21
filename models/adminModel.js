@@ -1,13 +1,12 @@
 const mongoose = require('mongoose')
 require('../utils/dbConnection.js')
-const userSchema = new mongoose.Schema({
+
+const adminSchema = new mongoose.Schema({
     username: String,
-    address: String,
     phone: String,
     password: String
 })
 
-const User = mongoose.model('Users', userSchema )
-
-module.exports = User
-
+const admin = mongoose.model('admins',adminSchema)
+ 
+module.exports = admin
