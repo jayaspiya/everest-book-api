@@ -3,9 +3,23 @@ const router = express.Router()
 
 const Book = require("../models/bookModel.js")
 
-router.get("/",async function(req,res){
-    const bookList = await Book.find()
-    res.send(bookList)
+router.get("/",async function(_,res){
+    try {
+        const bookList = await Book.find()
+        res.send(bookList)
+    } catch (error) {
+        res.send(error)
+    }
+    res.end()
+})
+
+router.get('/:bookId', async function(req, res){
+    try {
+        const book  = await Book.findById(req.params.bookId)
+        res.send(book)
+    } catch (err) {
+        res.send(err)
+    }
     res.end()
 })
 

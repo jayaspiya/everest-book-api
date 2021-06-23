@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-require('../utils/dbConnection.js')
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,

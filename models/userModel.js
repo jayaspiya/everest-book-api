@@ -1,12 +1,30 @@
 const mongoose = require('mongoose')
-require('../utils/dbConnection.js')
 const userSchema = new mongoose.Schema({
-    username: String,
-    address: String,
-    phone: String,
-    password: String
+    email:{
+        type: String
+    },
+    password: {
+        type: String
+    },
+    firstname:{
+        type: String
+    },
+    lastname:{
+        type: String
+    },
+    address: {
+        type: String
+    },
+    phone: {
+        type: String
+    },
+    gender:{
+        type: String,
+        enum: ['male', 'female', 'other']
+    },
+    birthdate:{
+        type: String
+    },
 })
 
-const User = mongoose.model('users', userSchema )
-
-module.exports = User
+module.exports = mongoose.model('User', userSchema )

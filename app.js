@@ -1,21 +1,27 @@
 const express = require('express')
-const app = express()
-const port = 3500
-app.use(express.json())
-
+const cors = require("cors")
+// Routes
 const userRoutes = require('./routes/userRoutes.js')
-const adminRoutes = require("./routes/adminRoutes.js")
+const storeRoutes = require("./routes/storeRoutes.js")
 const bookRoutes = require("./routes/bookRoutes.js")
 
+require("./utils/dbConnection.js")
+
+const app = express()
+const port = 5500
+app.use(express.json())
+
+app.use(cors())
+
 app.use('/', function(req,res,next){
-    console.log(`${req.url} ${req.method}`)
+    console.log(req.method, req.url)
     next()
 })
 
 app.use('/user',userRoutes)
-app.use('/admin',adminRoutes)
+app.use('/store',storeRoutes)
 app.use('/book', bookRoutes)
 
 app.listen(port,()=>{
-    console.log(`Listening at port localhost:${port}`)
+    console.log(`Listening at port http://localhost:${port}`)
 })
