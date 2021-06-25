@@ -8,7 +8,7 @@ const bookRoutes = require("./routes/bookRoutes.js")
 require("./utils/dbConnection.js")
 
 const app = express()
-const port = 5500
+const port = process.env.PORT || 8080
 app.use(express.json())
 
 app.use(cors())

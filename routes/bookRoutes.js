@@ -25,13 +25,7 @@ router.get('/:bookId', async function(req, res){
 
 router.post("/",async function(req,res){
     try{
-        const book = new Book({
-            title:req.body.title,
-            author:req.body.author,
-            isbn: req.body.isbn,
-            synopsis:req.body.synopsis,
-            price:req.body.price
-        })
+        const book = new Book(req.body)
         await book.save()
     }
     catch(err){
