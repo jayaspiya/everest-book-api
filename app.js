@@ -1,5 +1,5 @@
 const express = require('express')
-// const cors = require("cors")
+const cors = require("cors")
 // Routes
 const userRoutes = require('./routes/userRoutes.js')
 const storeRoutes = require("./routes/storeRoutes.js")
@@ -11,7 +11,7 @@ const app = express()
 const port = process.env.PORT || 8080
 app.use(express.json())
 
-// app.use(cors())
+app.use(cors())
 
 app.use('/', function(req,res,next){
     console.log(req.method, req.url)
