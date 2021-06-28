@@ -35,10 +35,12 @@ change value of URI in **utils/dbCollection.js**
 ```
 
 ### User Model
+User Registration
 ```javascript
 {
     "email": "user@gmail.com",
     "password": "12345",
+    "username": "user",
     "firstname": "Biscuits",
     "lastname": "Anon",
     "address": "Somewhere",
@@ -46,3 +48,4 @@ change value of URI in **utils/dbCollection.js**
     "birthdate": "1999/01/08"
 }
 ```
+

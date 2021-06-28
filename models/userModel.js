@@ -3,6 +3,9 @@ const userSchema = new mongoose.Schema({
     email:{
         type: String
     },
+    username:{
+        type: String
+    },
     password: {
         type: String
     },
@@ -20,7 +23,8 @@ const userSchema = new mongoose.Schema({
     },
     gender:{
         type: String,
-        enum: ['male', 'female', 'other']
+        enum: ['male', 'female', 'other'],
+        default: 'male'
     },
     birthdate:{
         type: String
