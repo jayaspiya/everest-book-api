@@ -22,15 +22,20 @@ change value of URI in **utils/dbCollection.js**
 ```
 
 ### Store Model
+Store Registration
 ```javascript
 {
-    "username": "store2",
     "email": "store2@everest.com",
     "password": "12345",
     "location": "Patan",
-    "inStore": "Book1, Book2, Book3",
-    "manager": "Jenny Queen",
-    "phone": "98XXXXXXX2"
+    "manager": "Jenny Queen"
+}
+```
+Store Login
+```javascript
+{
+    "email": "store2@everest.com",
+    "password": "12345"
 }
 ```
 

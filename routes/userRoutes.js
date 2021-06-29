@@ -2,11 +2,6 @@ const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const User = require('../models/User.js')
 
-router.get("/",function(req,res){
-    res.send("User Get")
-    res.end()
-})
-
 router.post("/register",async function(req,res){
     try {
         const hashed = await bcrypt.hash(req.body.password, 10)
@@ -28,10 +23,10 @@ router.post("/login", async function(req, res){
         if(user){
             const validLogin = await bcrypt.compare(req.body.password, user.password)
             if(validLogin){
-                res.send("Corrent Password")
+                res.send("Auth")
             }
             else{
-                res.send("Incorrent Password")
+                res.send("Not Auth")
             }
         }
         else{

@@ -5,7 +5,7 @@ require("./utils/dbConnection.js")
 
 // Routes Import
 const userRoutes = require('./routes/userRoutes.js')
-// const storeRoutes = require("./routes/storeRoutes.js")
+const storeRoutes = require("./routes/storeRoutes.js")
 // const bookRoutes = require("./routes/bookRoutes.js")
 
 
@@ -29,7 +29,7 @@ app.use('/', function(req,res,next){
 // })
 
 app.use("/user",userRoutes)
-// app.use('/store',storeRoutes)
+app.use('/store',storeRoutes)
 // app.use('/book', bookRoutes)
 
 app.listen(port,()=>{
