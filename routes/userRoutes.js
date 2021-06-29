@@ -1,37 +1,42 @@
-const express = require('express')
-const bcryptjs = require("bcryptjs")
+const router = require('express').Router()
+const bcrypt = require('bcryptjs')
+const User = require('../models/User.js')
 
-const router = express.Router()
-const User = require('../models/userModel.js')
-
-router.get('/', async function(_, res){
-    const users  = await User.find()
-    res.send(users)
+router.get("/",function(req,res){
+    res.send("User Get")
     res.end()
 })
 
-router.get('/:userId', async function(req, res){
-    const users  = await User.findById(req.params.userId)
-    res.send(users)
-    res.end()
-})
-
-router.post('/', async function(req,res){
-    const {email,username, password, firstname, lastname, gender,birthdate, Address} = req.body
-    // bcryptjs.hash("jayas", 10,function(err,hash){
-    //     console.log(hash)
-    // })
-    const user = new User({email,username, password, firstname, lastname, gender,birthdate, address})
-    try{
-        await user.save()
-        res.status(201).json({
-            message: "User Post Successfully"
+router.post("/register",async function(req,res){
+    try {
+        // const hashed = await bcrypt.hash(req.body.password, 12)
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password
         })
-    }
-    catch(err){
-       res.status(500).json({message: err})
+        const userRes = await user.save()
+        res.send(userRes)
+    } catch (error) {
+        res.send(error)
     }
     res.end()
 })
+
+router.post("/login", async function(req, res){
+    const user = await User.findOne({email: req.body.email})
+    if(user){
+        if(user.password === req.body.password){
+            res.send("Corrent Password")
+        }
+        else{
+            res.send("Incorrent Password")
+        }
+    }
+    else{
+        res.send("Not Found")
+    }
+    res.end()
+})
+
 
 module.exports = router

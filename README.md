@@ -38,14 +38,8 @@ change value of URI in **utils/dbCollection.js**
 User Registration
 ```javascript
 {
-    "email": "user@gmail.com",
-    "password": "12345",
-    "username": "user",
-    "firstname": "Biscuits",
-    "lastname": "Anon",
-    "address": "Somewhere",
-    "gender": "male",
-    "birthdate": "1999/01/08"
+    "email": "user@mail.com",
+    "password": "123456789"
 }
 ```
 
