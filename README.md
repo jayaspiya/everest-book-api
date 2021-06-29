@@ -35,11 +35,11 @@ change value of URI in **utils/dbCollection.js**
 ```
 
 ### User Model
-User Registration
+User Registration & Login
 ```javascript
 {
-    "email": "user@mail.com",
-    "password": "123456789"
+    "email": "user@everest.com",
+    "password": "password123"
 }
 ```
 

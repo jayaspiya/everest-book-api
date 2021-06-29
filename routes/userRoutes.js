@@ -9,10 +9,10 @@ router.get("/",function(req,res){
 
 router.post("/register",async function(req,res){
     try {
-        // const hashed = await bcrypt.hash(req.body.password, 12)
+        const hashed = await bcrypt.hash(req.body.password, 10)
         const user = new User({
             email: req.body.email,
-            password: req.body.password
+            password: hashed
         })
         const userRes = await user.save()
         res.send(userRes)
@@ -23,17 +23,22 @@ router.post("/register",async function(req,res){
 })
 
 router.post("/login", async function(req, res){
-    const user = await User.findOne({email: req.body.email})
-    if(user){
-        if(user.password === req.body.password){
-            res.send("Corrent Password")
+    try {
+        const user = await User.findOne({email: req.body.email})
+        if(user){
+            const validLogin = await bcrypt.compare(req.body.password, user.password)
+            if(validLogin){
+                res.send("Corrent Password")
+            }
+            else{
+                res.send("Incorrent Password")
+            }
         }
         else{
-            res.send("Incorrent Password")
+            res.send("Not Found")
         }
-    }
-    else{
-        res.send("Not Found")
+    } catch (error) {
+        res.send(err)
     }
     res.end()
 })
