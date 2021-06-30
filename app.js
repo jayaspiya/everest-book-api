@@ -1,7 +1,7 @@
 const express = require('express')
 // const cors = require("cors")
 require('dotenv').config()
-require("./utils/dbConnection.js")
+const connection = require("./utils/dbConnection.js")
 
 // Routes Import
 const userRoutes = require('./routes/userRoutes.js')
@@ -32,6 +32,10 @@ app.use("/user",userRoutes)
 app.use('/store',storeRoutes)
 // app.use('/book', bookRoutes)
 
-app.listen(port,()=>{
-    console.log(`Listening at port http://localhost:${port}`)
+connection().then(()=>{
+    app.listen(port,()=>{
+        console.log(`Listening at port http://localhost:${port}`)
+    })
+}).catch((err)=>{
+    console.log(err)
 })
