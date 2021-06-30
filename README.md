@@ -11,7 +11,7 @@ change value of URI in **utils/dbCollection.js**
 
 ## Models
 ### Book Model
-```javascript
+```json
 {
     "title":"Book 1",
     "author":"Author 1",
@@ -23,7 +23,7 @@ change value of URI in **utils/dbCollection.js**
 
 ### Store Model
 Store Registration
-```javascript
+```json
 {
     "email": "store2@everest.com",
     "password": "12345",
@@ -32,7 +32,7 @@ Store Registration
 }
 ```
 Store Login
-```javascript
+```json
 {
     "email": "store2@everest.com",
     "password": "12345"
@@ -41,7 +41,7 @@ Store Login
 
 ### User Model
 User Registration & Login
-```javascript
+```json
 {
     "email": "user@everest.com",
     "password": "password123"
