@@ -34,4 +34,22 @@ router.post("/",async function(req,res){
     res.end()
 })
 
+router.put("/", async function(req, res){
+    const updatedBook = await Book.updateOne({
+        _id: req.body.id
+    },{
+        price: req.body.price
+    })
+    res.send(updatedBook)
+    res.end()
+})
+
+router.delete("/", async function(req,res){
+    const deletedBook = await Book.deleteOne({
+        _id: req.body.id
+    })
+    res.send(deletedBook)
+    res.end()
+})
+
 module.exports = router
