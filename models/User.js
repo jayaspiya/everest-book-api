@@ -12,7 +12,8 @@ const userSchema = mongoose.Schema({
     },
     joinedDate:{
         type: Date,
-        default: Date.now
+        default: Date.now,
+        select: false
     },
     firstname:{
         type: String,

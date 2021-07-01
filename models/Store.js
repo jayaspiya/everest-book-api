@@ -17,9 +17,6 @@ const storeSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    inStoreBooks:{
-        type: String
-    },
     phone: {
         type: String
     },
