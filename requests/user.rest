@@ -1,0 +1,25 @@
+@request = {{$dotenv hostname}}/user
+@bearerToken = {{$dotenv bearer}}
+
+### Register new user
+POST {{request}}/register
+Content-Type: application/json
+
+{
+    "email": "user1@everest.com",
+    "password": "password123"
+}
+
+### Login user
+POST {{request}}/login
+Content-Type: application/json
+
+{
+    "email": "user1@everest.com",
+    "password": "password123"
+}
+
+### User Profile 
+GET {{request}}/profile
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}

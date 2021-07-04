@@ -1,4 +1,5 @@
 const express = require("express")
+const verifyUser  = require("../utils/auth.js")
 const router = express.Router()
 
 const Book = require("../models/Book.js")
@@ -13,7 +14,7 @@ router.get("/",async function(_,res){
     res.end()
 })
 
-router.get('/:bookId', async function(req, res){
+router.get('/:bookId', verifyUser ,async function(req, res){
     try {
         const book  = await Book.findById(req.params.bookId)
         res.send(book)

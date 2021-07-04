@@ -1,18 +1,20 @@
 const router = require('express').Router()
 const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
-const token = process.env.TOKEN_SECRET
+const tokenKey = process.env.TOKEN_KEY
 const User = require('../models/User.js')
+const verifyUser = require("../utils/auth.js")
 
 router.post("/register",async function(req,res){
     try {
-        const hashed = await bcrypt.hash(req.body.password, 10)
+        const salt = await bcrypt.genSalt(10)
+        const hashed = await bcrypt.hash(req.body.password, salt)
         const user = new User({
             email: req.body.email,
             password: hashed
         })
         const userRes = await user.save()
-        res.send(userRes)
+        res.sendStatus(201)
     } catch (error) {
         res.send(error)
     }
@@ -25,8 +27,8 @@ router.post("/login", async function(req, res){
         if(user){
             const validLogin = await bcrypt.compare(req.body.password, user.password)
             if(validLogin){
-                const accessToken = jwt.sign({user: user._id}, token)
-                res.json(accessToken)
+                const accessToken = jwt.sign({_id: user._id}, tokenKey)
+                res.json({accessToken})
             }
             else{
                 res.statusCode(406)
@@ -41,5 +43,10 @@ router.post("/login", async function(req, res){
     res.end()
 })
 
+router.get("/profile", verifyUser, async (req, res)=>{
+    const user = await User.find({_id: req.user._id})
+    res.json(user)
+    res.end()
+})
 
 module.exports = router

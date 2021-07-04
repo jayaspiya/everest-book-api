@@ -37,31 +37,11 @@ const bookSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    likes:{
-        type: Number,
-        default: 0
-    },
     tags:[
         {
             type: String
         }
     ],
-    review:[
-        {
-            userName: {
-                type: String,
-                required: true,
-            },
-            comment:{
-                type: String,
-                required: true,   
-            },
-            wroteOn:{
-                type: Date,
-                default: Date.now,
-            }
-        }
-    ]
 })
 
 module.exports = mongoose.model("Book", bookSchema)

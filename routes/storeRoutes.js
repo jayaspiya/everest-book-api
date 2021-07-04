@@ -4,7 +4,8 @@ const Store = require("../models/Store.js")
 
 router.post('/register', async function(req, res){
     try {
-        const hashed = await bcrypt.hash(req.body.password, 10)
+        const salt = bcrypt.genSalt()
+        const hashed = await bcrypt.hash(req.body.password, salt)
         const store = new Store({
             email: req.body.email,
             password: hashed,

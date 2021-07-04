@@ -1,4 +1,8 @@
 # Everest Book API
+
+## Models
+- review, order
+
 ## env file (optional)
 Create env file with
 ```python
@@ -38,13 +42,3 @@ Store Login
     "password": "12345"
 }
 ```
-
-### User Model
-User Registration & Login
-```json
-{
-    "email": "user@everest.com",
-    "password": "password123"
-}
-```
-
