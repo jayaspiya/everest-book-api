@@ -1,12 +1,15 @@
 const mongoose = require('mongoose')
+const capitalizeUtil = require("../utils/capitalize.js")
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,
-        required: true
+        required: true,
+        set: v => v.toLowerCase()
     },
     author:{
         type: String,
-        required: true
+        required: true,
+        set: v => v.toLowerCase(),
     },
     isbn: {
         type: String,
@@ -20,10 +23,6 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    imageUrl:{
-        type: String,
-        required: true
-    },
     releasedYear:{
         type: Number,
         required: true
@@ -35,7 +34,8 @@ const bookSchema = new mongoose.Schema({
     addedDate:{
         // To filter latest books
         type: Date,
-        default: Date.now
+        default: Date.now,
+        select: false
     },
     tags:[
         {
@@ -43,5 +43,6 @@ const bookSchema = new mongoose.Schema({
         }
     ],
 })
+
 
 module.exports = mongoose.model("Book", bookSchema)

@@ -14,9 +14,11 @@ router.get("/",async function(_,res){
     res.end()
 })
 
-router.get('/:bookId', verifyUser ,async function(req, res){
+router.get('/:bookTitle' ,async function(req, res){
     try {
-        const book  = await Book.findById(req.params.bookId)
+        const bookTitle = req.params.bookTitle.split("-").join(" ")
+        console.log(bookTitle)
+        const book  = await Book.find({title: bookTitle})
         res.send(book)
     } catch (err) {
         res.send(err)
@@ -24,7 +26,7 @@ router.get('/:bookId', verifyUser ,async function(req, res){
     res.end()
 })
 
-router.post("/",async function(req,res){
+router.post("/",verifyUser ,async function(req,res){
     try{
         const book = new Book({
             title: req.body.title,
@@ -32,10 +34,10 @@ router.post("/",async function(req,res){
             isbn: req.body.isbn,
             synopsis: req.body.synopsis,
             price: req.body.price,
-            imageUrl: req.body.imageUrl,
             releasedYear: req.body.releasedYear
         })
         await book.save()
+        res.sendStatus(201)
     }
     catch(err){
         console.log(err)

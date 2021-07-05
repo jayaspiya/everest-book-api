@@ -14,16 +14,6 @@ change value of URI in **utils/dbCollection.js**
 
 
 ## Models
-### Book Model
-```json
-{
-    "title":"Book 1",
-    "author":"Author 1",
-    "isbn": "1234657891",
-    "synopsis":"Book about Biscuits",
-    "price":240
-}
-```
 
 ### Store Model
 Store Registration

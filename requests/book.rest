@@ -1,0 +1,26 @@
+@request = {{$dotenv hostname}}/book
+@bearerToken = {{$dotenv bearer}}
+
+
+### Get All Books
+GET {{request}}
+
+### Get book detail [Pass book name with dash]
+@bookName = book-3
+GET {{request}}/{{bookName}}
+
+
+
+### Add new book
+POST {{request}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "title":"Book 5",
+    "author":"Phyllis Glover",
+    "isbn": "1234657891",
+    "synopsis":"History of Ford",
+    "price":240,
+    "releasedYear": 2002
+}
