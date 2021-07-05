@@ -21,8 +21,7 @@ Store Registration
 {
     "email": "store2@everest.com",
     "password": "12345",
-    "location": "Patan",
-    "manager": "Jenny Queen"
+
 }
 ```
 Store Login

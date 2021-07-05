@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require("jsonwebtoken")
 const tokenKey = process.env.TOKEN_KEY
 const User = require('../models/User.js')
-const verifyUser = require("../utils/auth.js")
+const auth = require("../utils/auth.js")
 
 router.post("/register",async function(req,res){
     try {
@@ -43,7 +43,7 @@ router.post("/login", async function(req, res){
     res.end()
 })
 
-router.get("/profile", verifyUser, async (req, res)=>{
+router.get("/profile", auth.verifyUser, async (req, res)=>{
     const user = await User.find({_id: req.user._id})
     res.json(user)
     res.end()

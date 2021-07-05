@@ -1,7 +1,5 @@
-const express = require("express")
-const verifyUser  = require("../utils/auth.js")
-const router = express.Router()
-
+const router = require("express").Router()
+const auth = require("../utils/auth.js")
 const Book = require("../models/Book.js")
 
 router.get("/",async function(_,res){
@@ -17,16 +15,21 @@ router.get("/",async function(_,res){
 router.get('/:bookTitle' ,async function(req, res){
     try {
         const bookTitle = req.params.bookTitle.split("-").join(" ")
-        console.log(bookTitle)
-        const book  = await Book.find({title: bookTitle})
-        res.send(book)
+        const book  = await Book.findOne({title: bookTitle})
+        if(book){
+            console.log("BOOK found")
+            res.send(book)
+        }
+        else{
+            res.status(404)
+        }
     } catch (err) {
         res.send(err)
     }
     res.end()
 })
 
-router.post("/",verifyUser ,async function(req,res){
+router.post("/" , auth.verifyStore ,async function(req,res){
     try{
         const book = new Book({
             title: req.body.title,

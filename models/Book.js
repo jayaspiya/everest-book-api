@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const capitalizeUtil = require("../utils/capitalize.js")
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,

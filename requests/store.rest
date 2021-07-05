@@ -1,0 +1,29 @@
+@request = {{$dotenv hostname}}/store
+@bearerToken = {{$dotenv bearerStore}}
+
+### Register new store
+POST {{request}}/register
+Content-Type: application/json
+
+{
+    "email": "store1@everest.com",
+    "password": "password123",
+    "location": "Patan",
+    "manager": "Jenny Queen"
+}
+
+
+### Login new store
+POST {{request}}/login
+Content-Type: application/json
+
+{
+    "email": "store1@everest.com",
+    "password": "password123"
+}
+
+
+### Store Profile 
+GET {{request}}/profile
+Content-Type: application/json
+Authorization: Bearer 
