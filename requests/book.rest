@@ -1,12 +1,12 @@
 @request = {{$dotenv hostname}}/book
-@bearerToken = {{$dotenv bearerUser}}
+@bearerToken = {{$dotenv bearerStore}}
 
 
 ### Get All Books
 GET {{request}}
 
 ### Get book detail [Pass book name with dash]
-@bookName = book-150
+@bookName = book-15
 GET {{request}}/{{bookName}}
 
 
@@ -22,4 +22,31 @@ Authorization: Bearer {{bearerToken}}
     "synopsis":"History of Ford",
     "price":240,
     "releasedYear": 2002
+}
+
+
+### Update Book detail
+PUT {{request}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "_id": "60e4367f8a1b2d640db729d6",
+    "quantity": 0,
+    "tags": [],
+    "title": "book 15",
+    "author": "phyllis glover",
+    "isbn": "1234657891",
+    "synopsis": "Ford History",
+    "price": 240,
+    "releasedYear": 2002
+}
+
+### Delete Book By ID
+DELETE {{request}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "_id": "60e4367f8a1b2d640db729d6"
 }

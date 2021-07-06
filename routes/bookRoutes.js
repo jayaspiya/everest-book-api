@@ -2,8 +2,6 @@ const router = require("express").Router()
 const auth = require("../utils/auth.js")
 const Book = require("../models/Book.js")
 
-// TODO: CRUD Books
-
 router.get("/",async function(_,res){
     try {
         const bookList = await Book.find()
@@ -50,21 +48,27 @@ router.post("/" , auth.verifyStore ,async function(req,res){
     res.end()
 })
 
-router.put("/", async function(req, res){
+router.put("/", auth.verifyStore, async function(req, res){
     const updatedBook = await Book.updateOne({
-        _id: req.body.id
+        _id: req.body._id
     },{
-        price: req.body.price
+        quantity: req.body.quantity,
+        tags: req.body.tags,
+        title: req.body.title,
+        author: req.body.author,
+        isbn: req.body.isbn,
+        synopsis: req.body.synopsis,
+        price: req.body.price,
+        releasedYear: req.body.releasedYear
     })
-    res.send(updatedBook)
+    res.json(updatedBook)
     res.end()
 })
 
-router.delete("/", async function(req,res){
-    const deletedBook = await Book.deleteOne({
-        _id: req.body.id
+router.delete("/", auth.verifyStore, async function(req,res){
+    await Book.deleteOne({
+        _id: req.body._id
     })
-    res.send(deletedBook)
     res.end()
 })
 

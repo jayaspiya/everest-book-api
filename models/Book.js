@@ -3,12 +3,10 @@ const bookSchema = new mongoose.Schema({
     title:{
         type: String,
         required: true,
-        set: v => v.toLowerCase()
     },
     author:{
         type: String,
         required: true,
-        set: v => v.toLowerCase(),
     },
     isbn: {
         type: String,
