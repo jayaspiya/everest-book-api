@@ -1,33 +1,17 @@
 # Everest Book API
 
 ## Models
-- review, order
+- TODO: Create Review & Order Routes
+- TODO: Implement Controller Concept
 
 ## env file (optional)
+
 Create env file with
 ```python
 # Use your atlas URI
+PORT=5500
 DB_URI=<URI_STRING>
+TOKEN_KEY=<TOKEN_KEY>
 ```
 ### Run without env
 change value of URI in **utils/dbCollection.js**
-
-
-## Models
-
-### Store Model
-Store Registration
-```json
-{
-    "email": "store2@everest.com",
-    "password": "12345",
-
-}
-```
-Store Login
-```json
-{
-    "email": "store2@everest.com",
-    "password": "12345"
-}
-```

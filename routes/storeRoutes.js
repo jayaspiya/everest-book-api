@@ -5,6 +5,8 @@ const jwt = require("jsonwebtoken")
 const auth = require("../utils/auth.js")
 const tokenKey = process.env.TOKEN_KEY
 
+// TODO: Update Store data
+
 router.post('/register', async function(req, res){
     try {
         const salt = await bcrypt.genSalt(10)

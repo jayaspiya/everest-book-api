@@ -26,4 +26,4 @@ Content-Type: application/json
 ### Store Profile 
 GET {{request}}/profile
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer {{bearerToken}}

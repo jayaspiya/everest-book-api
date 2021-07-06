@@ -49,4 +49,16 @@ router.get("/profile", auth.verifyUser, async (req, res)=>{
     res.end()
 })
 
+router.put('/', auth.verifyUser, async (req, res)=>{
+    await User.updateOne({_id: req.user._id},{
+        // firstname: req.body.firstname,
+        // lastname: req.body.lastname,
+        // address: req.body.address,
+        // phone: req.body.phone,
+        gender: req.body.gender,
+        // birthdate: req.body.birthdate
+    })
+    res.end()
+})
+
 module.exports = router

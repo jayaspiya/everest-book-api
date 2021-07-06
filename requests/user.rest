@@ -1,5 +1,5 @@
 @request = {{$dotenv hostname}}/user
-@bearerToken = {{$dotenv bearer}}
+@bearerToken = {{$dotenv bearerUser}}
 
 ### Register new user
 POST {{request}}/register
@@ -23,3 +23,18 @@ Content-Type: application/json
 GET {{request}}/profile
 Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
+
+
+### User Update
+PUT {{request}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "firstname":"Angie",
+    "lastname":"Lubowitz",
+    "address":"85317",
+    "phone":"98989898",
+    "birthdate":"2012/1/12",
+    "gender":"female"
+}

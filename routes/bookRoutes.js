@@ -2,6 +2,8 @@ const router = require("express").Router()
 const auth = require("../utils/auth.js")
 const Book = require("../models/Book.js")
 
+// TODO: CRUD Books
+
 router.get("/",async function(_,res){
     try {
         const bookList = await Book.find()
