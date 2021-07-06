@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+// TODO: Use Getter setter for names
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,

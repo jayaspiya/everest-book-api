@@ -6,7 +6,7 @@
 GET {{request}}
 
 ### Get book detail [Pass book name with dash]
-@bookName = book-15
+@bookName = Book-15
 GET {{request}}/{{bookName}}
 
 
@@ -31,15 +31,15 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "_id": "60e4367f8a1b2d640db729d6",
-    "quantity": 0,
-    "tags": [],
-    "title": "book 15",
-    "author": "phyllis glover",
+    "quantity": 10,
+    "tags": ["Legend"],
+    "_id": "60e43c527ae7e6794daa09f1",
+    "title": "Book 15",
+    "author": "Phyllis Glover",
     "isbn": "1234657891",
     "synopsis": "Ford History",
-    "price": 240,
-    "releasedYear": 2002
+    "price": 200,
+    "releasedYear": 2012
 }
 
 ### Delete Book By ID
@@ -48,5 +48,5 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "_id": "60e4367f8a1b2d640db729d6"
+    "_id": "60e43c527ae7e6794daa09f1"
 }

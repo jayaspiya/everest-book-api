@@ -1,75 +1,16 @@
 const router = require("express").Router()
 const auth = require("../utils/auth.js")
-const Book = require("../models/Book.js")
+const bookController = require("../controllers/bookController.js")
 
-router.get("/",async function(_,res){
-    try {
-        const bookList = await Book.find()
-        res.send(bookList)
-    } catch (error) {
-        res.send(error)
-    }
-    res.end()
-})
+router.get("/", bookController.get_all_books)
 
-router.get('/:bookTitle' ,async function(req, res){
-    try {
-        const bookTitle = req.params.bookTitle.split("-").join(" ")
-        const book  = await Book.findOne({title: bookTitle})
-        if(book){
-            console.log("BOOK found")
-            res.send(book)
-        }
-        else{
-            res.status(404)
-        }
-    } catch (err) {
-        res.send(err)
-    }
-    res.end()
-})
+router.get('/:bookTitle', bookController.get_book_by_title)
 
-router.post("/" , auth.verifyStore ,async function(req,res){
-    try{
-        const book = new Book({
-            title: req.body.title,
-            author: req.body.author,
-            isbn: req.body.isbn,
-            synopsis: req.body.synopsis,
-            price: req.body.price,
-            releasedYear: req.body.releasedYear
-        })
-        await book.save()
-        res.sendStatus(201)
-    }
-    catch(err){
-        console.log(err)
-    }
-    res.end()
-})
+// [User Verification Required] 
+router.post("/", auth.verifyStore, bookController.insert_new_book)
 
-router.put("/", auth.verifyStore, async function(req, res){
-    const updatedBook = await Book.updateOne({
-        _id: req.body._id
-    },{
-        quantity: req.body.quantity,
-        tags: req.body.tags,
-        title: req.body.title,
-        author: req.body.author,
-        isbn: req.body.isbn,
-        synopsis: req.body.synopsis,
-        price: req.body.price,
-        releasedYear: req.body.releasedYear
-    })
-    res.json(updatedBook)
-    res.end()
-})
+router.put("/", auth.verifyStore, bookController.update_book_detail)
 
-router.delete("/", auth.verifyStore, async function(req,res){
-    await Book.deleteOne({
-        _id: req.body._id
-    })
-    res.end()
-})
+router.delete("/", auth.verifyStore, bookController.delete_book_by_id)
 
 module.exports = router

@@ -31,10 +31,10 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "firstname":"Angie",
-    "lastname":"Lubowitz",
-    "address":"85317",
-    "phone":"98989898",
-    "birthdate":"2012/1/12",
-    "gender":"female"
+    "firstname": "Derek",
+    "lastname": "Lubowitz",
+    "address": "85317",
+    "phone": "98989898",
+    "birthdate": "2012-01-11T18:15:00.000Z",
+    "gender": "male"
 }
