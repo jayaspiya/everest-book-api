@@ -1,13 +1,14 @@
 {
   "name": "everest-book-api",
   "version": "1.0.0",
-  "description": "",
+  "description": "API for College project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "devStart": "nodemon app.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jayas Piya",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -16,5 +17,8 @@
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.14"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.9"
   }
 }

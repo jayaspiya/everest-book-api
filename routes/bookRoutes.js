@@ -1,5 +1,5 @@
 const router = require("express").Router()
-const auth = require("../utils/auth.js")
+const auth = require("../middleware/auth.js")
 const bookController = require("../controllers/bookController.js")
 
 router.get("/", bookController.get_all_books)
