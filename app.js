@@ -8,6 +8,7 @@ const logger = require("./utils/logger.js")
 const userRoutes = require('./routes/userRoutes.js')
 const storeRoutes = require("./routes/storeRoutes.js")
 const bookRoutes = require("./routes/bookRoutes.js")
+const reviewRoutes = require("./routes/reviewRoutes.js")
 
 
 const app = express()
@@ -22,6 +23,7 @@ app.use(express.urlencoded({extended:false}))
 app.use("/user",userRoutes)
 app.use('/store',storeRoutes)
 app.use('/book', bookRoutes)
+app.use('/review', reviewRoutes)
 
 connection().then(()=>{
     app.listen(port,()=>{

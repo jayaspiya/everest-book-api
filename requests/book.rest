@@ -6,7 +6,7 @@
 GET {{request}}
 
 ### Get book detail [Pass book name with dash]
-@bookName = Book-15
+@bookName = A-Man-with-One-of-Those-Faces
 GET {{request}}/{{bookName}}
 
 
@@ -16,10 +16,10 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "title":"Book 15",
-    "author":"Phyllis Glover",
+    "title":"A Man with One of Those Faces",
+    "author":"Caimh Mcdonnell",
     "isbn": "1234657891",
-    "synopsis":"History of Ford",
+    "synopsis":"Hello world",
     "price":240,
     "releasedYear": 2002
 }

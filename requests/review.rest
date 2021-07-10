@@ -1,0 +1,17 @@
+@request = {{$dotenv hostname}}/review
+@bearerToken = {{$dotenv bearerUser}}
+
+
+### Get all reviews
+GET {{request}}
+
+
+### Insert New review
+POST {{request}}
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "bookId": "60e9d4485b41186a0ab44f7d",
+    "description": "This book is so cool"
+}
