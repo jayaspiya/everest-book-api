@@ -5,6 +5,8 @@
 ### Get all reviews
 GET {{request}}
 
+### Get all reviews by bookid
+GET {{request}}/60ee68dc51b0ea44244fddbe
 
 ### Insert New review
 POST {{request}}
@@ -12,6 +14,7 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "bookId": "60e9d4485b41186a0ab44f7d",
-    "description": "This book is so cool"
+    "book": "60ee68dc51b0ea44244fddbe",
+    "rating": 3,
+    "description": "Review 8 here"
 }

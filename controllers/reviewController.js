@@ -4,12 +4,21 @@ exports.get_all_reviews = async function(req,res){
     res.send(reviews)
 }
 
+exports.get_review_by_book_id = async function(req,res){
+    const bookReviews = await Review.find({book: req.params.bookId}).populate({
+        path:'user',
+        select: 'firstname _id'
+    })
+    res.send(bookReviews)
+}
+
 exports.insert_new_review = async function(req, res){
     const uId = req.user._id 
     const review = new Review({
-        userId: uId,
-        bookId: req.body.bookId,
-        description: req.body.description
+        user: uId,
+        book: req.body.book,
+        description: req.body.description,
+        rating: req.body.rating
     })
     review.save()
     res.sendStatus(201)

@@ -11,10 +11,11 @@ exports.get_all_books = async function(_,res){
 
 exports.get_book_by_title = async function(req, res){
     try {
-        const bookTitle = req.params.bookTitle.split("-").join(" ")
-        const book  = await Book.findOne({title: bookTitle})
+        const bookTitle = req.params.bookTitle.split("-").join(" ").toLowerCase()
+        const book = await Book.findOne({title: bookTitle})
         if(book){
             res.send(book)
+            console.log(book.title)
         }
         else{
             res.status(404)

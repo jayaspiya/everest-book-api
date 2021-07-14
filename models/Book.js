@@ -1,5 +1,10 @@
 const mongoose = require('mongoose')
-// TODO: Use Getter setter for names
+const capitalize = require("../utils/capitalize.js")
+const opts = {
+    toJSON: {
+        getters: true
+    }
+}
 const bookSchema = new mongoose.Schema({
     title:{
         type: String,
@@ -40,7 +45,18 @@ const bookSchema = new mongoose.Schema({
             type: String
         }
     ],
+},opts)
+bookSchema.path("title").get(v=>{
+    return capitalize(v)
 })
-
+bookSchema.path("title").set(v=>{
+    return v.toLowerCase()
+})
+bookSchema.path("author").get(v=>{
+    return capitalize(v)
+})
+bookSchema.path("author").set(v=>{
+    return v.toLowerCase()
+})
 
 module.exports = mongoose.model("Book", bookSchema)

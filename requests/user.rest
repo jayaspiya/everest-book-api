@@ -6,7 +6,7 @@ POST {{request}}/register
 Content-Type: application/json
 
 {
-    "email": "hiraboi@everest.com",
+    "email": "joyboy@everest.com",
     "password": "password123"
 }
 
@@ -15,7 +15,7 @@ POST {{request}}/login
 Content-Type: application/json
 
 {
-    "email": "hiraboi@everest.com",
+    "email": "joyboy@everest.com",
     "password": "password123"
 }
 
