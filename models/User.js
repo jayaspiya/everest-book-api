@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-
+// TODO: Add User Cart, saved items
 const userSchema = mongoose.Schema({
     email: { 
         type: String,
