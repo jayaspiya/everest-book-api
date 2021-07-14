@@ -1,8 +1,14 @@
 const router = require("express").Router()
 const auth = require("../middleware/auth.js")
 const bookController = require("../controllers/bookController.js")
-
+// TODO Get Books by rating, tags
 router.get("/", bookController.get_all_books)
+
+router.get("/latest", bookController.get_latest_books)
+
+router.get("/author/:authorName", bookController.get_book_by_author)
+
+router.get("/isbn/:isbn", bookController.get_book_by_isbn)
 
 router.get('/:bookTitle', bookController.get_book_by_title)
 

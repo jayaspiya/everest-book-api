@@ -1,4 +1,5 @@
 const Book = require("../models/Book.js")
+const slug = require("../utils/slug.js")
 exports.get_all_books = async function(_,res){
     try {
         const bookList = await Book.find()
@@ -11,11 +12,10 @@ exports.get_all_books = async function(_,res){
 
 exports.get_book_by_title = async function(req, res){
     try {
-        const bookTitle = req.params.bookTitle.split("-").join(" ").toLowerCase()
+        const bookTitle = slug(req.params.bookTitle).toLowerCase()
         const book = await Book.findOne({title: bookTitle})
         if(book){
             res.send(book)
-            console.log(book.title)
         }
         else{
             res.status(404)
@@ -24,6 +24,45 @@ exports.get_book_by_title = async function(req, res){
         res.send(err)
     }
     res.end()
+}
+
+exports.get_book_by_author = async function(req,res){
+    try{
+        const authorName = slug(req.params.authorName).toLowerCase()
+        const bookList = await Book.find({author: authorName})
+        if(bookList.length>0){
+            res.send(bookList)
+        }
+        else{
+            res.status(404)
+        }
+    }
+    catch(err){
+        res.send(err)
+    }
+}
+exports.get_book_by_isbn = async function(req,res){
+    try {
+        const isbn = req.params.isbn
+        const book = await Book.findOne({isbn})
+        if(book){
+            res.send(book)
+        }
+        else{
+            res.sendStatus(404)
+        }
+    } catch (error) {
+        res.send(error)
+    }
+}
+
+exports.get_latest_books = async function(req,res){
+    try {
+        const bookList = await Book.find().sort({addedDate: -1}).limit(2)
+        res.send(bookList)
+    } catch (error) {
+        res.send(error)
+    }
 }
 
 exports.insert_new_book = async function(req,res){
