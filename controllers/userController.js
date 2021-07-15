@@ -41,6 +41,15 @@ exports.login_user = async function(req, res){
     res.end()
 }
 
+exports.upload_new_profile = async (req,res)=>{
+    const user = await User.updateOne({
+        _id: req.user._id
+    },{
+        profile:req.uploadedFilename
+    })
+    res.end()
+}
+
 exports.get_user_detail = async (req, res)=>{
     const user = await User.find({_id: req.user._id})
     res.json(user)

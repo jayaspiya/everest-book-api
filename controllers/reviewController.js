@@ -8,7 +8,7 @@ exports.get_review_by_book_id = async function(req,res){
     const bookReviews = await Review.find({book: req.params.bookId}).populate({
         path:'user',
         select: 'firstname _id'
-    })
+    }).select("-book")
     res.send(bookReviews)
 }
 

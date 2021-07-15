@@ -1,21 +1,20 @@
 @request = {{$dotenv hostname}}/book
 @bearerToken = {{$dotenv bearerStore}}
 
-
 ### Get All Books
 GET {{request}}
 
-### Get book detail [Pass book name with dash]
+### Get book detail [Pass slug book name]
 @bookName = the-art-oF-wAr
 GET {{request}}/{{bookName}}
 
 
-### Get book detail witn author name [Pass author name with dash]
-@authorName = jamie-ja7
+### Get book by author name [Pass slug author name]
+@authorName = hira-Boi
 GET {{request}}/author/{{authorName}}
 
 ### Get Book by ISBN
-GET {{request}}/isbn/12346578911a
+GET {{request}}/isbn/984500
 
 ### Get latest books
 GET {{request}}/latest
@@ -26,9 +25,9 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "title":"The Art of Love 2",
-    "author":"Jamie ja",
-    "isbn": "1234657899",
+    "title":"Natural Education Volume III",
+    "author":"Hira boi",
+    "isbn": "984500",
     "synopsis":"Don Quixote has become so entranced reading tales of chivalry that he decides to turn knight errant himself. In the company of his faithful squire, Sancho Panza, these exploits blossom in all sorts of wonderful ways. While Quixote's fancy often leads him astray—he tilts at windmills, imagining them to be giants—Sancho acquires cunning and a certain sagacity. Sane madman and wise fool, they roam the world together-and together they have haunted readers' imaginations for nearly four hundred years.",
     "price":260,
     "releasedYear": 2006
