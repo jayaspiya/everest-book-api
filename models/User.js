@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
-// TODO: Add User Cart, saved items
+const { update } = require('./Store')
+// TODO: saved items, migrate controller to methods
 const userSchema = mongoose.Schema({
     email: { 
         type: String,
@@ -40,7 +41,38 @@ const userSchema = mongoose.Schema({
     },
     birthdate:{
         type: Date
-    }
+    },
+    cart:[
+        {
+            itemId: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Book"
+            },
+            quantity:{
+                type: Number,
+                default: 1
+            }
+        }
+    ]
 })
+
+userSchema.methods.addToCart = function(itemId){
+    const updatedCart = [...this.cart]
+    const itemIndex = updatedCart.findIndex(
+        item => {
+            return (item.itemId.toString() === itemId)
+        }
+    )
+    if(itemIndex === -1){
+        updatedCart.push({ itemId,quantity:1 })
+        this.cart = updatedCart
+    }
+    else{
+        updatedCart[itemIndex].quantity++
+    }
+    return this.save()
+}
+
+
 
 module.exports = mongoose.model('User',userSchema)

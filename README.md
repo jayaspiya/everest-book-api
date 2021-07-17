@@ -1,8 +1,5 @@
 # Everest Book API
 
-## Models
-- TODO: Create Review & Order Routes
-- TODO: Implement Controller Concept
 
 ## env file (optional)
 

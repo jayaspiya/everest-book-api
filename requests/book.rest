@@ -25,8 +25,8 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "title":"Natural Education Volume III",
-    "author":"Hira boi",
+    "title":"Natural Education Volume 3",
+    "author":"Milan",
     "isbn": "984500",
     "synopsis":"Don Quixote has become so entranced reading tales of chivalry that he decides to turn knight errant himself. In the company of his faithful squire, Sancho Panza, these exploits blossom in all sorts of wonderful ways. While Quixote's fancy often leads him astray—he tilts at windmills, imagining them to be giants—Sancho acquires cunning and a certain sagacity. Sane madman and wise fool, they roam the world together-and together they have haunted readers' imaginations for nearly four hundred years.",
     "price":260,

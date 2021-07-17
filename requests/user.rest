@@ -38,3 +38,16 @@ Authorization: Bearer {{bearerToken}}
     "birthdate": "2012-01-11T18:15:00.000Z",
     "gender": "male"
 }
+
+### View cart
+GET {{request}}/cart
+Authorization: Bearer {{bearerToken}}
+
+### Add to cart
+POST {{request}}/addtocart
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "productId": "60f2f750c0def767af678f0b"
+}

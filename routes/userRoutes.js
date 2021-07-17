@@ -14,4 +14,7 @@ router.get("/profile", auth.verifyUser, userController.get_user_detail)
 
 router.put('/', auth.verifyUser, userController.update_user_detail)
 
+router.get("/cart", auth.verifyUser, userController.get_cart)
+
+router.post("/addtocart", auth.verifyUser, userController.add_to_cart)
 module.exports = router
