@@ -56,6 +56,17 @@ exports.get_book_by_isbn = async function(req,res){
     }
 }
 
+exports.get_book_by_tags = async function (req,res){
+    const tags = req.body.tags
+    const bookList = await Book.find({
+        tags: {
+            $all: tags
+        }
+    })
+    res.send(bookList)
+    res.end()
+}
+
 exports.get_latest_books = async function(req,res){
     try {
         const bookList = await Book.find().sort({addedDate: -1}).limit(2)
@@ -72,6 +83,7 @@ exports.insert_new_book = async function(req,res){
             author: req.body.author,
             isbn: req.body.isbn,
             synopsis: req.body.synopsis,
+            tags: req.body.tags,
             price: req.body.price,
             releasedYear: req.body.releasedYear
         })
