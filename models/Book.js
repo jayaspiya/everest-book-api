@@ -45,6 +45,11 @@ const bookSchema = new mongoose.Schema({
             type: String
         }
     ],
+    cover:{
+        front:String,
+        back: String,
+        side: String
+    }
 },opts)
 bookSchema.path("title").get(v=>{
     return capitalize(v)

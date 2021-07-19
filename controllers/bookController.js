@@ -1,4 +1,6 @@
+const { reset } = require("nodemon")
 const Book = require("../models/Book.js")
+const cloudinary = require("../utils/cloudinary.js")
 const slug = require("../utils/slug.js")
 exports.get_all_books = async function(_,res){
     try {
@@ -88,6 +90,7 @@ exports.insert_new_book = async function(req,res){
             releasedYear: req.body.releasedYear
         })
         await book.save()
+        console.log(book)
         res.sendStatus(201)
     }
     catch(err){
@@ -116,5 +119,21 @@ exports.delete_book_by_id = async function(req,res){
     await Book.deleteOne({
         _id: req.body._id
     })
+    res.end()
+}
+
+exports.update_cover_image = async function(req,res){
+    const formImage = req.files.bookFullCover
+    const imagePath = formImage.tempFilePath
+    const bookName = req.params.bookId
+    const result = await cloudinary.uploadBookCover(imagePath, bookName)
+    console.log("result")
+    const bookId = req.params.bookId
+    await Book.updateOne({
+        _id: bookId
+    },{
+        cover: result
+    })
+
     res.end()
 }

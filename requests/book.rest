@@ -5,7 +5,7 @@
 GET {{request}}
 
 ### Get book detail [Pass slug book name]
-@bookName = the-art-oF-wAr
+@bookName = natural-education-volume-3
 GET {{request}}/{{bookName}}
 
 
@@ -71,3 +71,10 @@ Authorization: Bearer {{bearerToken}}
 {
     "_id": "60e43c527ae7e6794daa09f1"
 }
+
+
+### Update book cover
+# PUT {{request}}/update-cover/:bookId
+# Authorization: Bearer {{bearerToken}}
+
+# file field name: bookFullCover
