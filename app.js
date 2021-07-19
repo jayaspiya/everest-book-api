@@ -1,5 +1,6 @@
 const express = require('express')
 // const cors = require("cors")
+const fileUpload = require("express-fileupload")
 require('dotenv').config()
 const connection = require("./utils/dbConnection.js")
 const logger = require("./utils/logger.js")
@@ -10,15 +11,18 @@ const storeRoutes = require("./routes/storeRoutes.js")
 const bookRoutes = require("./routes/bookRoutes.js")
 const reviewRoutes = require("./routes/reviewRoutes.js")
 
-
 const app = express()
 const port = process.env.PORT || 8080
-
-app.use(logger)
+if(process.env.DEBUG){
+    app.use(logger)
+}
 // app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+// Serving Multer saved image
 app.use(express.static("./uploads"))
+app.use(fileUpload({useTempFiles : true}))
+
 
 app.use("/user",userRoutes)
 app.use('/store',storeRoutes)
