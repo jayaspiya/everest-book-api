@@ -134,6 +134,5 @@ exports.update_cover_image = async function(req,res){
     },{
         cover: result
     })
-
     res.end()
 }

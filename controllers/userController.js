@@ -1,6 +1,7 @@
 const bcrypt = require("bcryptjs")
 const User = require("../models/User.js")
 const jwt = require("jsonwebtoken")
+const cloudinary = require("../utils/cloudinary.js")
 const tokenKey = process.env.TOKEN_KEY
 
 exports.register_new_user = async function(req,res){
@@ -79,5 +80,15 @@ exports.get_cart = async (req,res) => {
     const _id = req.user._id
     const user = await User.findOne(_id).select("-_id cart")
     res.send(user.cart)
+    res.end()
+}
+
+
+exports.update_profile_picture = async function(req,res){
+    const formImage = req.files.profile
+    const imagePath = formImage.tempFilePath
+    const _id = req.user._id
+    const profile = await cloudinary.uploadUserProfile(imagePath, _id)
+    await User.updateOne({_id},{profile})
     res.end()
 }

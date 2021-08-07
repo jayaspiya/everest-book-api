@@ -19,3 +19,11 @@ exports.uploadBookCover = async (imagePath, bookName)=>{
             back: prefix +"c_crop,g_east,h_400,w_250/"+ mainURL
         }
 }
+
+exports.uploadUserProfile = async(imagePath, userId)=>{
+    const profile = await cloudinary.uploader.upload(imagePath,{
+        public_id: userId + Date.now(),
+        folder:"profile"
+    })
+    return profile.secure_url
+}
