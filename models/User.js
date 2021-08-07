@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-const { update } = require('./Store')
 // TODO: saved items, migrate controller to methods
 const userSchema = mongoose.Schema({
     email: { 

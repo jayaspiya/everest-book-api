@@ -13,7 +13,7 @@ const reviewRoutes = require("./routes/reviewRoutes.js")
 
 const app = express()
 const port = process.env.PORT || 8080
-if(process.env.DEBUG){
+if(process.env.DEBUG == "true"){
     app.use(logger)
 }
 // app.use(cors())
