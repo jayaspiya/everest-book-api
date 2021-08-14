@@ -1,4 +1,3 @@
-const { reset } = require("nodemon")
 const Book = require("../models/Book.js")
 const cloudinary = require("../utils/cloudinary.js")
 const slug = require("../utils/slug.js")
