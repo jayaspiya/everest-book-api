@@ -1,5 +1,5 @@
 const express = require('express')
-// const cors = require("cors")
+const cors = require("cors")
 const fileUpload = require("express-fileupload")
 require('dotenv').config()
 const connection = require("./utils/dbConnection.js")
@@ -16,7 +16,7 @@ const port = process.env.PORT || 8080
 if(process.env.DEBUG == "true"){
     app.use(logger)
 }
-// app.use(cors())
+app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 // Serving Multer saved image
