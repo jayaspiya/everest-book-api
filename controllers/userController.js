@@ -9,6 +9,10 @@ exports.register_new_user = async function(req,res){
         const salt = await bcrypt.genSalt(10)
         const hashed = await bcrypt.hash(req.body.password, salt)
         const user = new User({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            phone: req.body.phone,
             email: req.body.email,
             password: hashed
         })
@@ -37,7 +41,7 @@ exports.login_user = async function(req, res){
             res.statusCode(404)
         }
     } catch (error) {
-        res.send(err)
+        res.send(error)
     }
     res.end()
 }
