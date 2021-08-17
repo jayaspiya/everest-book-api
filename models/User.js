@@ -43,14 +43,8 @@ const userSchema = mongoose.Schema({
     },
     cart:[
         {
-            itemId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Book"
-            },
-            quantity:{
-                type: Number,
-                default: 1
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Book"
         }
     ]
 })
@@ -63,11 +57,8 @@ userSchema.methods.addToCart = function(itemId){
         }
     )
     if(itemIndex === -1){
-        updatedCart.push({ itemId,quantity:1 })
+        updatedCart.push(itemId)
         this.cart = updatedCart
-    }
-    else{
-        updatedCart[itemIndex].quantity++
     }
     return this.save()
 }

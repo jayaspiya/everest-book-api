@@ -15,7 +15,9 @@ router.get('/tags', bookController.get_book_by_tags)
 router.get('/:bookTitle', bookController.get_book_by_title)
 
 // [User Verification Required] 
-router.post("/", auth.verifyStore, bookController.insert_new_book)
+// router.post("/", auth.verifyStore, bookController.insert_new_book)
+router.post("/", bookController.insert_new_book)
+
 
 router.put("/update-cover/:bookId", auth.verifyStore, bookController.update_cover_image)
 

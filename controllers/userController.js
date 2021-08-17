@@ -78,7 +78,10 @@ exports.add_to_cart = async (req,res) =>{
 
 exports.get_cart = async (req,res) => {
     const _id = req.user._id
-    const user = await User.findOne(_id).select("-_id cart")
+    // const user = await User.findOne(_id).select("-_id cart")
+    const user = await User.findOne(_id).populate(
+        {path: "cart"}
+    )
     res.send(user.cart)
     res.end()
 }

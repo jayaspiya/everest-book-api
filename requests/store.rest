@@ -6,10 +6,10 @@ POST {{request}}/register
 Content-Type: application/json
 
 {
-    "email": "jayas@everest.com",
+    "email": "admin@everest.com",
     "password": "password123",
     "location": "Patan",
-    "manager": "Jayas Piya"
+    "manager": "Admin admin"
 }
 
 
@@ -18,7 +18,7 @@ POST {{request}}/login
 Content-Type: application/json
 
 {
-    "email": "jayas@everest.com",
+    "email": "admin@everest.com",
     "password": "password123"
 }
 

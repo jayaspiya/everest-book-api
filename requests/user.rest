@@ -6,7 +6,7 @@ POST {{request}}/register
 Content-Type: application/json
 
 {
-    "email": "joyboy@everest.com",
+    "email": "user@everest.com",
     "password": "password123"
 }
 
@@ -15,7 +15,7 @@ POST {{request}}/login
 Content-Type: application/json
 
 {
-    "email": "joyboy@everest.com",
+    "email": "user@everest.com",
     "password": "password123"
 }
 
@@ -49,5 +49,5 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "productId": "60f2f750c0def767af678f0b"
+    "productId": "611b83f9233a7120282df17f"
 }
