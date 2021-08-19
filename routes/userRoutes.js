@@ -16,7 +16,7 @@ router.put('/', auth.verifyUser, userController.update_user_detail)
 
 router.get("/cart", auth.verifyUser, userController.get_cart)
 
-router.post("/addtocart", auth.verifyUser, userController.add_to_cart)
+router.post("/addtocart/:bookId", auth.verifyUser, userController.add_to_cart)
 
 router.put("/update-profile", auth.verifyUser, userController.update_profile_picture)
 

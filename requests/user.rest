@@ -48,10 +48,5 @@ GET {{request}}/cart
 Authorization: Bearer {{bearerToken}}
 
 ### Add to cart
-POST {{request}}/addtocart
-Content-Type: application/json
+POST {{request}}/addtocart/611cadcadb43cb0d905ee59a
 Authorization: Bearer {{bearerToken}}
-
-{
-    "productId": "611b83f9233a7120282df17f"
-}

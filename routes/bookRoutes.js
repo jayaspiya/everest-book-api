@@ -12,7 +12,7 @@ router.get("/isbn/:isbn", bookController.get_book_by_isbn)
 
 router.get('/tags', bookController.get_book_by_tags)
 
-router.get('/:bookTitle', bookController.get_book_by_title)
+router.get('/:bookId', bookController.get_book_by_title)
 
 // [User Verification Required] 
 // router.post("/", auth.verifyStore, bookController.insert_new_book)

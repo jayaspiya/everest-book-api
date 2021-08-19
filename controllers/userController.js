@@ -73,10 +73,9 @@ exports.update_user_detail = async (req, res)=>{
     res.end()
 }
 exports.add_to_cart = async (req,res) =>{
-    const productId = req.body.productId
     const _id = req.user._id
     const user = await User.findById(_id)
-    await user.addToCart(productId)
+    await user.addToCart(req.params.bookId)
     res.end()
 }
 

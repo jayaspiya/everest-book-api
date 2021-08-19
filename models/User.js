@@ -53,9 +53,10 @@ userSchema.methods.addToCart = function(itemId){
     const updatedCart = [...this.cart]
     const itemIndex = updatedCart.findIndex(
         item => {
-            return (item.itemId.toString() === itemId)
+            return (item.toString() === itemId)
         }
     )
+    console.log(itemIndex)
     if(itemIndex === -1){
         updatedCart.push(itemId)
         this.cart = updatedCart
