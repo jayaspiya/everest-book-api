@@ -56,7 +56,6 @@ userSchema.methods.addToCart = function(itemId){
             return (item.toString() === itemId)
         }
     )
-    console.log(itemIndex)
     if(itemIndex === -1){
         updatedCart.push(itemId)
         this.cart = updatedCart
