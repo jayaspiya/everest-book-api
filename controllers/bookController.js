@@ -1,7 +1,7 @@
 const Book = require("../models/Book.js")
 const cloudinary = require("../utils/cloudinary.js")
 const slug = require("../utils/slug.js")
-// TODO: Search book by title, author, tag, isbn
+
 exports.get_all_books = async function(_,res){
     const bookList = await Book.find()
     res.json({
@@ -9,6 +9,31 @@ exports.get_all_books = async function(_,res){
         success: true,
         data: bookList
     })
+    res.end()
+}
+
+exports.get_book = async function(req, res){
+    try {
+        const book = await Book.findById(req.params.bookId)
+        if(book){
+            res.json({
+                message: "Book found",
+                success: true,
+                data: [book]
+            })
+        }
+        else{
+            res.json({
+                message: "Book not found",
+                success: false,
+            })
+        }
+    } catch (error) {
+        res.json({
+            message: "Id not valid",
+            success: false
+        })    
+    }
     res.end()
 }
 
@@ -77,7 +102,7 @@ exports.insert_new_book = async function(req,res){
     })
     await book.save()
     res.json({
-        message: "New Book added.",
+        message: `${req.body.title} Book Added.`,
         success: true,
     })
     res.end()
@@ -116,8 +141,9 @@ exports.delete_book_by_id = async function(req,res){
 
 exports.update_cover_image = async function(req,res){
     // Cover filename
+    // TODO: Filter Book by Mimetype
     const formImage = req.files.cover
-    console.log(req.files)
+    console.log(formImage)
     const imagePath = formImage.tempFilePath
     const bookName = req.params.bookId
     const result = await cloudinary.uploadBookCover(imagePath, bookName)

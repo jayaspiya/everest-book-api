@@ -1,5 +1,4 @@
 const mongoose = require('mongoose')
-// TODO: saved items, migrate controller to methods
 const userSchema = mongoose.Schema({
     email: { 
         type: String,
@@ -62,7 +61,5 @@ userSchema.methods.addToCart = function(itemId){
     }
     return this.save()
 }
-
-
 
 module.exports = mongoose.model('User',userSchema)
