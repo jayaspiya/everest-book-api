@@ -15,8 +15,8 @@ exports.uploadBookCover = async (imagePath, bookName)=>{
         const mainURL = imgUrl.replace(prefix, "")
         return {
             side: prefix +"c_crop,h_400,w_30/"+ mainURL,
-            front: prefix +"c_crop,g_west,h_400,w_250/"+ mainURL,
-            back: prefix +"c_crop,g_east,h_400,w_250/"+ mainURL
+            front: prefix +"c_crop,g_east,h_400,w_250/"+ mainURL,
+            back: prefix +"c_crop,g_west,h_400,w_250/"+ mainURL
         }
 }
 

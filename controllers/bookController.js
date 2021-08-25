@@ -115,7 +115,9 @@ exports.delete_book_by_id = async function(req,res){
 }
 
 exports.update_cover_image = async function(req,res){
-    const formImage = req.files.bookFullCover
+    // Cover filename
+    const formImage = req.files.cover
+    console.log(req.files)
     const imagePath = formImage.tempFilePath
     const bookName = req.params.bookId
     const result = await cloudinary.uploadBookCover(imagePath, bookName)

@@ -46,9 +46,18 @@ const bookSchema = new mongoose.Schema({
         }
     ],
     cover:{
-        front:String,
-        back: String,
-        side: String
+        side:{
+            type: String,
+            default: "https://res.cloudinary.com/zayazzp/image/upload/c_crop,h_400,w_30/v1629858102/no-cover_eh5nrb.png"
+        },
+        front: {
+            type: String,
+            default: "https://res.cloudinary.com/zayazzp/image/upload/c_crop,g_east,h_400,w_250/v1629858102/no-cover_eh5nrb.png"
+        },
+        back: {
+            type: String,
+            default: "https://res.cloudinary.com/zayazzp/image/upload/c_crop,g_west,h_400,w_250/v1629858102/no-cover_eh5nrb.png"
+        }
     }
 },opts)
 bookSchema.path("title").get(v=>{
