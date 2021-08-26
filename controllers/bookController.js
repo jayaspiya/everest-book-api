@@ -43,7 +43,7 @@ exports.get_book_by_title = async function(req, res){
     res.json({
         message: "Successful",
         success: true,
-        data: bookList
+        data: [bookList]
     })
     res.end()
 }
@@ -64,7 +64,7 @@ exports.get_book_by_isbn = async function(req,res){
     res.json({
         message: "Successful",
         success: true,
-        data: bookList
+        data: [bookList]
     })
     res.end()
 }
