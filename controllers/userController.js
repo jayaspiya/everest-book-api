@@ -4,15 +4,18 @@ const jwt = require("jsonwebtoken")
 const cloudinary = require("../utils/cloudinary.js")
 const tokenKey = process.env.TOKEN_KEY
 
+
 exports.register_new_user = async function(req,res){
     const salt = await bcrypt.genSalt(10)
     const hashed = await bcrypt.hash(req.body.password, salt)
+    const avatarUrl = "https://avatars.dicebear.com/api/gridy/" + req.body.firstname + ".svg"
     const user = new User({
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.email,
+        profile: avatarUrl,
         password: hashed
     })
     await user.save()
