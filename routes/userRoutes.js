@@ -8,7 +8,8 @@ router.post("/register", userController.register_new_user)
 router.post("/login", userController.login_user)
 
 // [User Verification Required] 
-router.post("/upload", auth.verifyUser, upload.single("profile"),userController.upload_new_profile)
+// Multer
+// router.post("/upload", auth.verifyUser, upload.single("profile"),userController.upload_new_profile)
 
 router.get("/profile", auth.verifyUser, userController.get_user_detail)
 
@@ -18,6 +19,6 @@ router.get("/cart", auth.verifyUser, userController.get_cart)
 
 router.post("/addtocart/:bookId", auth.verifyUser, userController.add_to_cart)
 
-router.put("/update-profile", auth.verifyUser, userController.update_profile_picture)
+router.put("/cover", auth.verifyUser, userController.update_profile_picture)
 
 module.exports = router

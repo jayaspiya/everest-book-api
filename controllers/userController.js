@@ -6,23 +6,32 @@ const tokenKey = process.env.TOKEN_KEY
 
 
 exports.register_new_user = async function(req,res){
-    const salt = await bcrypt.genSalt(10)
-    const hashed = await bcrypt.hash(req.body.password, salt)
-    const avatarUrl = "https://avatars.dicebear.com/api/gridy/" + req.body.firstname + ".svg"
-    const user = new User({
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        address: req.body.address,
-        phone: req.body.phone,
-        email: req.body.email,
-        profile: avatarUrl,
-        password: hashed
-    })
-    await user.save()
-    res.json({
-        message: "Registeration successful.",
-        success: true,
-    })
+    const checkUser = await User.findOne({email: req.body.email})
+    if(checkUser){
+        res.json({
+            message: "Email already exist",
+            success: false,
+        })
+    }
+    else{
+        const salt = await bcrypt.genSalt(10)
+        const hashed = await bcrypt.hash(req.body.password, salt)
+        const avatarUrl = "https://avatars.dicebear.com/api/gridy/" + req.body.firstname + ".svg"
+        const user = new User({
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            address: req.body.address,
+            phone: req.body.phone,
+            email: req.body.email,
+            profile: avatarUrl,
+            password: hashed
+        })
+        await user.save()
+        res.json({
+            message: "Registeration successful.",
+            success: true,
+        })
+    }
     res.end()
 }
 
@@ -110,18 +119,21 @@ exports.update_profile_picture = async function(req,res){
     const _id = req.user._id
     const profile = await cloudinary.uploadUserProfile(imagePath, _id)
     await User.updateOne({_id},{profile})
-    res.end()
-}
-
-exports.upload_new_profile = async (req,res)=>{
-    const user = await User.updateOne({
-        _id: req.user._id
-    },{
-        profile:req.uploadedFilename
-    })
     res.json({
         success: true,
         message: "Profile Updated",
     })
     res.end()
 }
+
+
+// Multer
+// exports.upload_new_profile = async (req,res)=>{
+//     await User.updateOne({
+//         _id: req.user._id
+//     },{
+//         profile:req.uploadedFilename
+//     })
+
+//     res.end()
+// }
