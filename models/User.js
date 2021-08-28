@@ -48,7 +48,7 @@ const userSchema = mongoose.Schema({
     ]
 })
 
-userSchema.methods.addToCart = function(itemId){
+userSchema.methods.addToCart = async function(itemId){
     const updatedCart = [...this.cart]
     const itemIndex = updatedCart.findIndex(
         item => {
@@ -58,8 +58,10 @@ userSchema.methods.addToCart = function(itemId){
     if(itemIndex === -1){
         updatedCart.push(itemId)
         this.cart = updatedCart
+        await this.save()
+        return true
     }
-    return this.save()
+    return false
 }
 
 module.exports = mongoose.model('User',userSchema)

@@ -66,7 +66,7 @@ exports.login_user = async function(req, res){
 
 
 exports.get_user_detail = async (req, res)=>{
-    const user = await User.find({_id: req.user._id})
+    const user = await User.find({_id: req.user._id}).select("-password -cart")
     res.json({
         success: true,
         message: "Request successful",
@@ -93,11 +93,19 @@ exports.update_user_detail = async (req, res)=>{
 exports.add_to_cart = async (req,res) =>{
     const _id = req.user._id
     const user = await User.findById(_id)
-    await user.addToCart(req.params.bookId)
-    res.json({
-        success: true,
-        message: "Book Added",
-    })
+    const isAdded = await user.addToCart(req.params.bookId)
+    if(isAdded){
+        res.json({
+            success: true,
+            message: "Book Added",
+        })
+    }
+    else{
+        res.json({
+            success: false,
+            message: "Book already in cart",
+        })
+    }
     res.end()
 }
 
