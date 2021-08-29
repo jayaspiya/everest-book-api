@@ -48,6 +48,19 @@ const userSchema = mongoose.Schema({
     ]
 })
 
+userSchema.path("firstname").get(v=>{
+    return capitalize(v)
+})
+userSchema.path("firstname").set(v=>{
+    return v.toLowerCase()
+})
+userSchema.path("lastname").get(v=>{
+    return capitalize(v)
+})
+userSchema.path("lastname").set(v=>{
+    return v.toLowerCase()
+})
+
 userSchema.methods.addToCart = async function(itemId){
     const updatedCart = [...this.cart]
     const itemIndex = updatedCart.findIndex(

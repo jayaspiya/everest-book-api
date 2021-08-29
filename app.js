@@ -29,6 +29,11 @@ app.use('/store',storeRoutes)
 app.use('/book', bookRoutes)
 app.use('/review', reviewRoutes)
 
+process.on('uncaughtException', function (err) {
+    console.error(err.stack);
+    console.log("Node NOT Exiting...");
+});
+
 connection().then(()=>{
     app.listen(port,()=>{
         console.log(`Listening at port http://localhost:${port}`)
