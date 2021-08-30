@@ -19,6 +19,6 @@ router.get("/cart", auth.verifyUser, userController.get_cart)
 
 router.post("/addtocart/:bookId", auth.verifyUser, userController.add_to_cart)
 
-router.put("/cover", auth.verifyUser, userController.update_profile_picture)
+router.patch("/profile", auth.verifyUser, userController.update_profile_picture)
 
 module.exports = router
