@@ -15,14 +15,15 @@ exports.register_new_user = async function(req,res){
     }
     else{
         const salt = await bcrypt.genSalt(10)
-        const hashed = await bcrypt.hash(req.body.password, salt)
-        const avatarUrl = "https://avatars.dicebear.com/api/gridy/" + req.body.firstname + ".svg"
+        const {firstname, lastname, password, address, email, phone} = req.body
+        const hashed = await bcrypt.hash(password, salt)
+        const avatarUrl = `https://ui-avatars.com/api/?background=random&name=${firstname}+${lastname}`
         const user = new User({
-            firstname: req.body.firstname,
-            lastname: req.body.lastname,
-            address: req.body.address,
-            phone: req.body.phone,
-            email: req.body.email,
+            firstname: firstname,
+            lastname: lastname,
+            address: address,
+            phone: phone,
+            email: email,
             profile: avatarUrl,
             password: hashed
         })
