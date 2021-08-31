@@ -6,7 +6,7 @@ POST {{request}}/register
 Content-Type: application/json
 
 {
-    "email": "user1@everest.com",
+    "email": "user@everest.com",
     "firstname": "Point",
     "lastname": "Pin",
     "address": "Lumbini, Nepal",

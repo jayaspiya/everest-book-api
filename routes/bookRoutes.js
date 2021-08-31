@@ -16,12 +16,16 @@ router.get('/tags', bookController.get_book_by_tags)
 
 router.get('/title/:bookId', bookController.get_book_by_title)
 
+router.get("/books-without-cover", bookController.get_books_without_cover)
+
 // [User Verification Required] 
 // router.post("/", auth.verifyStore, bookController.insert_new_book)
 router.post("/", bookController.insert_new_book)
 
 
-router.put("/cover/:bookId", auth.verifyStore, bookController.update_cover_image)
+// router.put("/cover/:bookId", auth.verifyStore, bookController.update_cover_image)
+router.put("/cover/:bookId", bookController.update_cover_image)
+
 
 router.put("/", auth.verifyStore, bookController.update_book_detail)
 

@@ -8,6 +8,9 @@ GET {{request}}
 @bookName = natural-education-volume-3
 GET {{request}}/{{bookName}}
 
+### Get books without cover
+GET {{request}}/books-without-cover
+
 
 ### Get book by author name [Pass slug author name]
 @authorName = hira-Boi

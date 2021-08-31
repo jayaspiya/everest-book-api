@@ -37,6 +37,17 @@ exports.get_book = async function(req, res){
     res.end()
 }
 
+exports.get_books_without_cover = async function(req,res){
+    const defaultCover = "https://res.cloudinary.com/zayazzp/image/upload/c_crop,g_east,h_400,w_250/v1629858102/no-cover_eh5nrb.png"
+    const bookList = await Book.find({"cover.front": defaultCover})
+    res.json({
+        message: "Successful",
+        success: true,
+        data: bookList
+    })
+    res.end()
+}
+
 exports.get_book_by_title = async function(req, res){
     const bookTitle = slug(req.params.bookTitle).toLowerCase()
     const bookList = await Book.findOne({title: bookTitle})
