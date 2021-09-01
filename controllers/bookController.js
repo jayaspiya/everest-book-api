@@ -123,7 +123,6 @@ exports.update_book_detail = async function(req, res){
     await Book.updateOne({
         _id: req.body._id
     },{
-        quantity: req.body.quantity,
         tags: req.body.tags,
         title: req.body.title,
         author: req.body.author,
@@ -141,7 +140,7 @@ exports.update_book_detail = async function(req, res){
 
 exports.delete_book_by_id = async function(req,res){
     await Book.deleteOne({
-        _id: req.body._id
+        _id: req.params.id
     })
     res.json({
         message: "Book Deleted.",

@@ -22,13 +22,12 @@ router.get("/books-without-cover", bookController.get_books_without_cover)
 // router.post("/", auth.verifyStore, bookController.insert_new_book)
 router.post("/", bookController.insert_new_book)
 
-
 // router.put("/cover/:bookId", auth.verifyStore, bookController.update_cover_image)
 router.put("/cover/:bookId", bookController.update_cover_image)
 
 
 router.put("/", auth.verifyStore, bookController.update_book_detail)
 
-router.delete("/", auth.verifyStore, bookController.delete_book_by_id)
+router.delete("/:id", bookController.delete_book_by_id)
 
 module.exports = router
