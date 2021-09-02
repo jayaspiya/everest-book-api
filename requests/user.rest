@@ -9,9 +9,9 @@ Content-Type: application/json
     "email": "user@everest.com",
     "firstname": "Point",
     "lastname": "Pin",
-    "address": "Lumbini, Nepal",
+    "address": "Somewhere",
     "phone": "9898989898",
-    "password": "password123"
+    "password": "123456"
 }
 
 ### Login user
@@ -19,8 +19,8 @@ POST {{request}}/login
 Content-Type: application/json
 
 {
-    "email": "user1@everest.com",
-    "password": "password123"
+    "email": "user@everest.com",
+    "password": "123456"
 }
 
 ### User Profile 
@@ -39,7 +39,6 @@ Authorization: Bearer {{bearerToken}}
     "lastname": "Lubowitz",
     "address": "85317",
     "phone": "98989898",
-    "birthdate": "2012-01-11T18:15:00.000Z",
     "gender": "male"
 }
 
