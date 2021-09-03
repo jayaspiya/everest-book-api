@@ -7,9 +7,13 @@ Content-Type: application/json
 
 {
     "email": "admin@everest.com",
-    "password": "password123",
-    "location": "Patan",
-    "manager": "Admin admin"
+    "password": "123456",
+    "phone": "9898989898",
+    "manager": "Admin admin",
+    "latitude": "27.695410573378158",
+    "longitude": "84.42346769727541",
+    "branch": "Main",
+    "showOnMap": true
 }
 
 
@@ -19,7 +23,7 @@ Content-Type: application/json
 
 {
     "email": "admin@everest.com",
-    "password": "password123"
+    "password": "123456"
 }
 
 
