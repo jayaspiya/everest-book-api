@@ -4,34 +4,13 @@
 ### Get All Books
 GET {{request}}
 
-### Get book detail [Pass slug book name]
-@bookName = natural-education-volume-3
-GET {{request}}/{{bookName}}
+
+### Get Book Detail
+GET {{request}}/view/612f1d18fbf0d436cd150e09
 
 ### Get books without cover
 GET {{request}}/books-without-cover
 
-
-### Get book by author name [Pass slug author name]
-@authorName = hira-Boi
-GET {{request}}/author/{{authorName}}
-
-### Get Book by ISBN
-GET {{request}}/isbn/984500
-
-### Get latest books
-GET {{request}}/latest
-
-### Get book by tags
-GET {{request}}/tags
-Content-Type: application/json
-
-{
-    "tags":[
-        "two",
-        "money"
-    ]
-}
 
 ### Add new book
 POST {{request}}
@@ -81,3 +60,30 @@ Authorization: Bearer {{bearerToken}}
 # Authorization: Bearer {{bearerToken}}
 
 # file field name: bookFullCover
+
+
+# Searching 
+### Get book detail [Pass slug book name]
+@bookName = natural-education-volume-3
+GET {{request}}/{{bookName}}
+
+### Get book by author name [Pass slug author name]
+@authorName = hira-Boi
+GET {{request}}/author/{{authorName}}
+
+### Get Book by ISBN
+GET {{request}}/isbn/984500
+
+### Get latest books
+GET {{request}}/latest
+
+### Get book by tags
+GET {{request}}/tags
+Content-Type: application/json
+
+{
+    "tags":[
+        "two",
+        "money"
+    ]
+}

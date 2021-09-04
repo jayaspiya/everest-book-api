@@ -2,11 +2,8 @@
 @bearerToken = {{$dotenv bearerUser}}
 
 
-### Get all reviews
-GET {{request}}
-
 ### Get all reviews by bookid
-GET {{request}}/60ee68dc51b0ea44244fddbe
+GET {{request}}/612f1d18fbf0d436cd150e09
 
 ### Insert New review
 POST {{request}}

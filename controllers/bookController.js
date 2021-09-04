@@ -1,4 +1,5 @@
 const Book = require("../models/Book.js")
+const Review = require("../models/Review.js")
 const cloudinary = require("../utils/cloudinary.js")
 const slug = require("../utils/slug.js")
 const {success, failure} = require("../utils/messageJson.js")
@@ -24,7 +25,13 @@ exports.get_all_books = async function(req,res){
 exports.get_book = async function(req, res){
     try {
         const _id = req.params.bookId
-        const book = await Book.findById(_id)
+        let book = await Book.findById(_id)
+        const reviews = await Review.find({book: _id}).populate({
+            path:'user',
+            select: 'firstname _id profile'
+        }).select("-book")
+        book = book.toObject()
+        book["reviews"] = reviews
         if(book){
             res.json(success("Book Found", [book]))
         }
