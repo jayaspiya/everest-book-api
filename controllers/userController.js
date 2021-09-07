@@ -170,10 +170,15 @@ exports.update_profile_picture = async function(req,res){
     try{
         const formImage = req.files.profile
         const imagePath = formImage.tempFilePath
-        const _id = req.user._id
-        const profile = await cloudinary.uploadUserProfile(imagePath, _id)
-        await User.updateOne({_id},{profile})
-        res.json(success("Profile Picture Changed"))
+        if(formImage.mimetype == "image/png" || formImage.mimetype == "image/jpg"){
+            const _id = req.user._id
+            const profile = await cloudinary.uploadUserProfile(imagePath, _id)
+            await User.updateOne({_id},{profile})
+            res.json(success("Profile Picture Changed"))
+        }
+        else{
+            res.json(failure("Must be png or jpg"))
+        }
     } catch (error) {
         console.log(error)
         res.json(failure())

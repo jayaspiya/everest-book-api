@@ -118,13 +118,17 @@ exports.update_cover_image = async function(req,res){
     try {
         // TODO: Filter Book by Mimetype
         const formImage = req.files.cover
-        console.log(formImage)
-        const imagePath = formImage.tempFilePath
-        const bookName = req.params.bookId
-        const cover = await cloudinary.uploadBookCover(imagePath, bookName)
-        const _id = req.params.bookId
-        await Book.updateOne({_id},{cover})
-        res.json(success("Book Cover Changed"))
+        if(formImage.mimetype == "image/png" || formImage.mimetype == "image/jpg"){
+            const imagePath = formImage.tempFilePath
+            const bookName = req.params.bookId
+            const cover = await cloudinary.uploadBookCover(imagePath, bookName)
+            const _id = req.params.bookId
+            await Book.updateOne({_id},{cover})
+            res.json(success("Book Cover Changed"))
+        }
+        else{
+            res.json(failure("Must be png or jpg"))
+        }
     } catch (error) {
         conosle.log(error)
         res.json(failure())
