@@ -9,6 +9,12 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
     },
+    passwordSetDate:{
+        // For Password Change Option
+        type: Date,
+        default: Date.now,
+        select: false
+    },
     joinedDate:{
         type: Date,
         default: Date.now,
@@ -67,6 +73,22 @@ userSchema.methods.addToCart = async function(itemId){
     )
     if(itemIndex === -1){
         updatedCart.push(itemId)
+        this.cart = updatedCart
+        await this.save()
+        return true
+    }
+    return false
+}
+
+userSchema.methods.deleteFromCart = async function(itemId){
+    const updatedCart = [...this.cart]
+    const itemIndex = updatedCart.findIndex(
+        item => {
+            return (item.toString() === itemId)
+        }
+    )
+    if(itemIndex === -1){
+        updatedCart.splice(itemId,1)
         this.cart = updatedCart
         await this.save()
         return true

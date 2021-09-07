@@ -95,6 +95,8 @@ exports.update_user_detail = async (req, res)=>{
     res.end()
 }
 
+// CART
+
 exports.add_to_cart = async (req,res) =>{
     try{
         const _id = req.user._id
@@ -113,6 +115,25 @@ exports.add_to_cart = async (req,res) =>{
     res.end()
 }
 
+exports.delete_from_cart = async (req,res) => {
+    try {
+        const _id = req.user._id
+        const user = await User.findById(_id)
+        const isDeleted = await user.deleteFromCart(req.params.bookId)
+        if(isDeleted){
+            res.json(success("Book Removed"))
+        }
+        else{
+            res.json(failure("Book Not Found"))
+        }
+    } catch (error) {
+        console.log(errror)
+        res.json(failure())
+    }
+    res.end()
+}
+
+
 exports.get_cart = async (req,res) => {
     try{
         const _id = req.user._id
@@ -124,6 +145,8 @@ exports.get_cart = async (req,res) => {
     }
     res.end()
 }
+
+// Profile Picture Update
 
 exports.update_profile_picture = async function(req,res){
     try{

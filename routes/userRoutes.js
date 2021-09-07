@@ -10,12 +10,16 @@ router.post("/login", userController.login_user)
 
 router.get("/profile", auth.verifyUser, userController.get_user_detail)
 
+router.put('/', auth.verifyUser, userController.update_user_detail)
+
+router.patch("/profile", auth.verifyUser, userController.update_profile_picture)
+
+// CART
+
 router.get("/cart", auth.verifyUser, userController.get_cart)
 
 router.post("/addtocart/:bookId", auth.verifyUser, userController.add_to_cart)
 
-router.put('/', auth.verifyUser, userController.update_user_detail)
-
-router.patch("/profile", auth.verifyUser, userController.update_profile_picture)
+router.delete("/deletefromcart/:bookId", auth.verifyUser, userController.delete_from_cart)
 
 module.exports = router
