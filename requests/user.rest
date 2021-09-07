@@ -29,6 +29,17 @@ Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 
+### Password Change
+PUT {{request}}/password
+Content-Type: application/json
+Authorization: Bearer {{bearerToken}}
+
+{
+    "oldPassword": "123456",
+    "newPassword": "123456"
+}
+
+
 ### User Update
 PUT {{request}}
 Content-Type: application/json
@@ -47,5 +58,9 @@ GET {{request}}/cart
 Authorization: Bearer {{bearerToken}}
 
 ### Add to cart
-POST {{request}}/addtocart/611cadcadb43cb0d905ee59a
+POST {{request}}/addtocart/612f06bd5105e532fe4fafff
+Authorization: Bearer {{bearerToken}}
+
+### Delete from cart
+DELETE {{request}}/deletefromcart/612f1d4afbf0d436cd150e0b
 Authorization: Bearer {{bearerToken}}

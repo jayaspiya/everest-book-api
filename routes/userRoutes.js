@@ -12,6 +12,8 @@ router.get("/profile", auth.verifyUser, userController.get_user_detail)
 
 router.put('/', auth.verifyUser, userController.update_user_detail)
 
+router.put("/password", auth.verifyUser, userController.change_password)
+
 router.patch("/profile", auth.verifyUser, userController.update_profile_picture)
 
 // CART

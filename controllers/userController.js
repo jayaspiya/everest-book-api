@@ -47,7 +47,7 @@ exports.login_user = async function (req, res) {
 				const accessToken = jwt.sign({_id}, tokenKey)
 				res.json({
                     message: "Login successful.", 
-                    accessToken, 
+                    accessToken,
                     success: true
                 })
 			} else {
@@ -90,6 +90,24 @@ exports.update_user_detail = async (req, res)=>{
         res.json(success("User Updated"))
     } catch (error) {
         console.log(error)
+        res.json(failure())
+    }
+    res.end()
+}
+
+exports.change_password = async (req,res) => {
+    const {oldPassword, newPassword} = req.body
+    const user = await User.findOne({_id: req.user._id}).select("+passwordSetDate")
+	const validLogin = await bcrypt.compare(oldPassword, user.password)
+    if(validLogin){
+        const salt = await bcrypt.genSalt(10)
+        const hashed = await bcrypt.hash(newPassword, salt)
+        user.passwordSetDate = new Date()
+        user.password = hashed
+        await user.save()
+        res.json(success("Password Changed"))
+    }
+    else{
         res.json(failure())
     }
     res.end()
