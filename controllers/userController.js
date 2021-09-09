@@ -3,6 +3,7 @@ const User = require("../models/User.js")
 const jwt = require("jsonwebtoken")
 const cloudinary = require("../utils/cloudinary.js")
 const {success, failure} = require("../utils/messageJson.js")
+const Book = require("../models/Book.js")
 const tokenKey = process.env.TOKEN_KEY
 
 exports.register_new_user = async function (req, res) {
@@ -119,9 +120,11 @@ exports.add_to_cart = async (req,res) =>{
     try{
         const _id = req.user._id
         const user = await User.findById(_id)
-        const isAdded = await user.addToCart(req.params.bookId)
+        const bookId = req.params.bookId
+        const isAdded = await user.addToCart(bookId)
+        const book = await Book.findById(bookId)
         if(isAdded){
-            res.json(success("New Book Added"))
+            res.json(success(book.title +  " Added"))
         }
         else{
             res.json(failure("Book Already On Cart"))
