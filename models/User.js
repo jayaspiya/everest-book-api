@@ -88,7 +88,7 @@ userSchema.methods.deleteFromCart = async function(itemId){
         }
     )
     if(itemIndex !== -1){
-        updatedCart.splice(itemId,1)
+        updatedCart.splice(itemIndex,1)
         this.cart = updatedCart
         await this.save()
         return true

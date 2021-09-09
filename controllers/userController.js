@@ -140,9 +140,11 @@ exports.delete_from_cart = async (req,res) => {
     try {
         const _id = req.user._id
         const user = await User.findById(_id)
-        const isDeleted = await user.deleteFromCart(req.params.bookId)
+        const bookId = req.params.bookId
+        const isDeleted = await user.deleteFromCart(bookId)
+        const book = await Book.findById(bookId)
         if(isDeleted){
-            res.json(success("Book Removed"))
+            res.json(success(book.title + " Removed"))
         }
         else{
             res.json(failure("Book Not Found"))
