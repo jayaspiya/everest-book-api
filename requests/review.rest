@@ -3,7 +3,7 @@
 
 
 ### Get all reviews by bookid
-GET {{request}}/612f1d18fbf0d436cd150e09
+GET {{request}}/612d0a31dc66860f808be2a3
 
 ### Insert New review
 POST {{request}}

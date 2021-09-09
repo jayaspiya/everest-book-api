@@ -116,7 +116,6 @@ exports.delete_book = async function(req,res){
 
 exports.update_cover_image = async function(req,res){
     try {
-        // TODO: Filter Book by Mimetype
         const formImage = req.files.cover
         if(formImage.mimetype == "image/png" || formImage.mimetype == "image/jpg"){
             const imagePath = formImage.tempFilePath
