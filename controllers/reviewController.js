@@ -34,3 +34,18 @@ exports.insert_new_review = async function(req, res){
     }
     res.end()
 }
+
+exports.update_review = async function(req, res){
+    try{
+        Review.updateOne({_id: req.body.id},{
+            description: req.body.description,
+            rating: req.body.rating
+        })
+        res.json(success("Review Updated"))
+    }
+    catch(e){
+        console.log(e)
+        res.json(failure())
+    }
+    res.end()
+}

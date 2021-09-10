@@ -69,7 +69,7 @@ exports.login_user = async function (req, res) {
 exports.get_user_detail = async (req, res)=>{
     try {
         // Remove password and Cart from User
-        const user = await User.findOne({_id: req.user._id}).select("-password -cart")
+        const user = await User.findOne({_id: req.user._id}).select("-password")
         res.json(success("Request successful", user))
     } catch (error) {
         console.log(error)

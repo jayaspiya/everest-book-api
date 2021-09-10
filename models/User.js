@@ -43,6 +43,9 @@ const userSchema = mongoose.Schema({
         type: String,
         enum: ['male', 'female', 'other'],
     },
+    DOB: {
+        type: Date
+    },
     cart:[
         {
             type: mongoose.Schema.Types.ObjectId,
