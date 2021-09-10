@@ -1,4 +1,17 @@
-const mongoose = require("mongosse")
+const mongoose = require("mongoose")
+
+const orderItemSchema = mongoose.Schema({
+    bookId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Book"  
+    },
+    qty:{
+        type: Number
+    },
+    price:{
+        type: Number
+    }
+})
 
 const orderSchema = mongoose.Schema({
     user: {
@@ -9,17 +22,6 @@ const orderSchema = mongoose.Schema({
         type:Date,
         default: Date.now
     },
-    items:[
-        {
-            bookId: {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Book"  
-            },
-            quantity:{
-                type: Number
-            }
-        }
-    ],
     totalAmount:{
         type: Number
     },
@@ -28,9 +30,10 @@ const orderSchema = mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ["completed", "pending", "confirmed"],
-        default: "confirmed"
-    }
+        enum: ["completed", "pending"],
+        default: "pending"
+    },
+    orderBook:[orderItemSchema],
 })
 
 module.exports = mongoose.model("Order", orderSchema)

@@ -10,6 +10,7 @@ const userRoutes = require('./routes/userRoutes.js')
 const storeRoutes = require("./routes/storeRoutes.js")
 const bookRoutes = require("./routes/bookRoutes.js")
 const reviewRoutes = require("./routes/reviewRoutes.js")
+const orderRoutes = require("./routes/orderRoutes.js")
 
 const app = express()
 const port = process.env.PORT || 8080
@@ -23,11 +24,11 @@ app.use(express.urlencoded({extended:false}))
 app.use(express.static("./uploads"))
 app.use(fileUpload({useTempFiles : true}))
 
-
-app.use("/user",userRoutes)
-app.use('/store',storeRoutes)
-app.use('/book', bookRoutes)
-app.use('/review', reviewRoutes)
+app.use("/user", userRoutes)
+app.use("/store", storeRoutes)
+app.use("/book", bookRoutes)
+app.use("/review", reviewRoutes)
+app.use("/order", orderRoutes)
 
 process.on('uncaughtException', function (err) {
     console.error(err.stack);

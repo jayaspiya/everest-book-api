@@ -1,0 +1,14 @@
+@request = {{$dotenv hostname}}/order
+
+### Get Order
+GET {{request}}
+Authorization: Bearer {{$dotenv bearerStore}}
+
+### Place Order
+POST {{request}}
+Content-Type: application/json
+Authorization: Bearer {{$dotenv bearerUser}}
+
+{
+    "orderBook": [{"_id": "612f1d18fbf0d436cd150e09","qty": 4,"price": 900}, {"_id": "612f11bffbf0d436cd150de5","qty": 1,"price": 520}]
+}
