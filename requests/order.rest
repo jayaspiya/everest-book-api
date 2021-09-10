@@ -10,5 +10,5 @@ Content-Type: application/json
 Authorization: Bearer {{$dotenv bearerUser}}
 
 {
-    "orderBook": [{"_id": "612f1d18fbf0d436cd150e09","qty": 4,"price": 900}, {"_id": "612f11bffbf0d436cd150de5","qty": 1,"price": 520}]
+    "orderBook": [{"bookId": "612d09b6dc66860f808be2a1","qty": 1,"price": 900},{"bookId": "612d0a80dc66860f808be2a5","qty": 1,"price": 900},{"bookId": "612f1d18fbf0d436cd150e09","qty": 1,"price": 900}, {"bookId": "612f11bffbf0d436cd150de5","qty": 1,"price": 520}]
 }
