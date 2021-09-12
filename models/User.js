@@ -44,7 +44,7 @@ const userSchema = mongoose.Schema({
         enum: ['male', 'female', 'other'],
     },
     DOB: {
-        type: Date
+        type: String
     },
     cart:[
         {

@@ -30,7 +30,7 @@ exports.get_book = async function(req, res){
         const reviews = await Review.find({book: _id}).populate({
             path:'user',
             select: 'firstname _id profile'
-        }).select("-book")
+        }).select("-book").sort({createdAt: -1}).limit(10)
         book = book.toObject()
         book["reviews"] = reviews
         if(req.user){
