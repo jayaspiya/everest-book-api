@@ -2,7 +2,29 @@ const jwt = require("jsonwebtoken")
 const tokenKey = process.env.TOKEN_KEY
 const User = require("../models/User.js")
 const Store = require("../models/Store.js")
-const {success, failure} = require("../utils/messageJson.js")
+const {failure} = require("../utils/messageJson.js")
+
+module.exports.checkUserLoggedIn = async (req, res, next) => {
+    try {
+        const authHeader = req.headers.authorization
+        if(authHeader){
+        const accessToken = authHeader && authHeader.split(" ")[1]
+        const authUser = jwt.verify(accessToken, tokenKey)
+        const user = await User.findOne({
+            _id: authUser._id
+        })
+        if (user) {
+            req.user = user
+        }}
+        next()
+    } catch (err) {
+        console.log(err)
+        res.json({
+            success: false,
+            message: "Something went wrong"
+        })
+    }
+}
 
 module.exports.verifyUser = async (req, res, next) => {
     try {

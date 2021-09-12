@@ -1,4 +1,5 @@
 const Book = require("../models/Book.js")
+const User = require("../models/User.js")
 const Review = require("../models/Review.js")
 const cloudinary = require("../utils/cloudinary.js")
 const slug = require("../utils/slug.js")
@@ -32,6 +33,15 @@ exports.get_book = async function(req, res){
         }).select("-book")
         book = book.toObject()
         book["reviews"] = reviews
+        if(req.user){
+            const user = await User.findById(req.user._id)
+            if(user.cart.includes(_id)){
+                book["inCart"] = true
+            }
+            else{
+                book["inCart"] = false
+            }
+        }
         if(book){
             res.json(success("Book Found", [book]))
         }

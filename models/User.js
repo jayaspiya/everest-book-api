@@ -51,6 +51,12 @@ const userSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Book"
         }
+    ],
+    recentlyViewed:[
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Book"
+        }
     ]
 })
 

@@ -4,7 +4,7 @@ const bookController = require("../controllers/bookController.js")
 
 router.get("/", bookController.get_all_books)
 
-router.get('/view/:bookId', bookController.get_book)
+router.get('/view/:bookId', auth.checkUserLoggedIn, bookController.get_book)
 
 // [For Admin Interface] 
 
