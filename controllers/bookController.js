@@ -35,6 +35,15 @@ exports.get_book = async function(req, res){
         book["reviews"] = reviews
         if(req.user){
             const user = await User.findById(req.user._id)
+            const updatedRecentlyViewed = [...user.recentlyViewed]
+            updatedRecentlyViewed.unshift(_id)
+            newRecentlyViewed = []
+            updatedRecentlyViewed.forEach(item => {
+                newRecentlyViewed.push(String(item))
+            });
+            const recentlyViewedSet = [...new Set(newRecentlyViewed)]
+            user.recentlyViewed = recentlyViewedSet
+            await user.save()
             if(user.cart.includes(_id)){
                 book["inCart"] = true
             }
