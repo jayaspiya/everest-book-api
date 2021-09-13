@@ -37,11 +37,23 @@ exports.insert_new_review = async function(req, res){
 
 exports.update_review = async function(req, res){
     try{
-        Review.updateOne({_id: req.body.id},{
+        Review.updateOne({_id: req.params.reviewId, user: req.user._id},{
             description: req.body.description,
             rating: req.body.rating
         })
         res.json(success("Review Updated"))
+    }
+    catch(e){
+        console.log(e)
+        res.json(failure())
+    }
+    res.end()
+}
+
+exports.delete_review = async function(req,res){
+    try{
+        Review.deleteOne({_id: req.params.reviewId, user: req.user._id})
+        res.json(success("Review Deleted"))
     }
     catch(e){
         console.log(e)

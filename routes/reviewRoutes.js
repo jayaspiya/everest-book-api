@@ -6,6 +6,9 @@ router.get("/:bookId", reviewController.get_review_by_book_id)
 
 router.post("/:bookId", auth.verifyUser, reviewController.insert_new_review)
 
-router.put("/", auth.verifyUser, reviewController.update_review)
+router.put("/:reviewId", auth.verifyUser, reviewController.update_review)
+
+router.delete("/:reviewId", auth.verifyUser, reviewController.delete_review)
+
 
 module.exports = router

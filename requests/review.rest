@@ -6,12 +6,11 @@
 GET {{request}}/612d0a31dc66860f808be2a3
 
 ### Insert New review
-POST {{request}}
+POST {{request}}/612d0a31dc66860f808be2a3
 Content-Type: application/json
 Authorization: Bearer {{bearerToken}}
 
 {
-    "book": "60ee68dc51b0ea44244fddbe",
-    "rating": 3,
-    "description": "Review 8 here"
+    "rating": 5,
+    "description": "Best Book Ever"
 }
