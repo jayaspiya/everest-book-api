@@ -42,3 +42,29 @@ exports.add_order = async function(req,res){
     }
     res.end()
 }
+
+exports.complete_order = async function(req,res){
+    try {
+        const _id = req.params.id
+        const status = "completed"
+        await Order.updateOne({_id},{status})
+        res.json(success("Order Completed"))
+    } catch (error) {
+        console.log(error)
+        res.json(failure())
+    }
+    res.end()
+}
+
+exports.cancel_order = async function(req,res){
+    try {
+        const _id = req.params.id
+        const status = "canceled"
+        await Order.updateOne({_id},{status})
+        res.json(success("Order Canceled"))
+    } catch (error) {
+        console.log(error)
+        res.json(failure())
+    }
+    res.end()
+}

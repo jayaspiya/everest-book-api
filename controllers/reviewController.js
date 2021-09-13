@@ -21,7 +21,7 @@ exports.insert_new_review = async function(req, res){
         const _id = req.user._id 
         const review = new Review({
             user: _id,
-            book: req.body.book,
+            book: req.params.bookId,
             description: req.body.description,
             rating: req.body.rating
         })
