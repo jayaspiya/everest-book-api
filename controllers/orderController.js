@@ -68,3 +68,15 @@ exports.cancel_order = async function(req,res){
     }
     res.end()
 }
+
+exports.get_order_by_user = async function(req,res){
+    try{
+        const userId = req.user._id
+        const order = await Order.find({user: userId})
+        res.json(success("Ordered Fetched", order))
+    }catch (error) {
+        console.log(error)
+        res.json(failure())
+    }
+    res.end()
+}

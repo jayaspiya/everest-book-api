@@ -6,8 +6,10 @@ router.get("/", auth.verifyStore,orderController.get_order)
 
 router.post("/", auth.verifyUser, orderController.add_order)
 
-router.put("/complete/:id", auth.verifyUser, orderController.complete_order)
+router.get("/user", auth.verifyUser, orderController.get_order_by_user)
 
-router.put("/cancel/:id", auth.verifyUser, orderController.cancel_order)
+router.put("/complete/:id", auth.verifyStore, orderController.complete_order)
+
+router.put("/cancel/:id", auth.verifyStore, orderController.cancel_order)
 
 module.exports = router

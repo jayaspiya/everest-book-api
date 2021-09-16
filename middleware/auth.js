@@ -60,7 +60,7 @@ module.exports.verifyUser = async (req, res, next) => {
 
 module.exports.verifyStore = async (req, res, next) => {
     try {
-        const authHeader = req.headers.authorization
+        const authHeader = req.headers.authorization || req.body.headers.Authorization
         const accessToken = authHeader && authHeader.split(" ")[1]
         if (accessToken == null) return res.json(failure("Unauthorized"))
         const authUser = jwt.verify(accessToken, tokenKey)
