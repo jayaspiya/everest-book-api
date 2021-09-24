@@ -26,7 +26,7 @@ Content-Type: application/json
 ### User Profile 
 GET {{request}}/profile
 Content-Type: application/json
-Authorization: Bearer {{bearerToken}}
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTRjYzU0OWQ3ZDliZDFhMDIwNTE0OTUiLCJpYXQiOjE2MzI0NzQzODJ9.NjUM6TKfp2X6BTWmhICpX2LpgeqaswOIzzBrLRy0JmU
 
 
 ### Password Change

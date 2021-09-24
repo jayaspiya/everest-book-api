@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken")
 const cloudinary = require("../utils/cloudinary.js")
 const {success, failure} = require("../utils/messageJson.js")
 const Book = require("../models/Book.js")
+const Order = require("../models/Order.js")
+const Review = require("../models/Review.js")
 const tokenKey = process.env.TOKEN_KEY
 
 exports.register_new_user = async function (req, res) {
@@ -49,6 +51,7 @@ exports.login_user = async function (req, res) {
 				res.json({
                     message: "Login successful.", 
                     accessToken,
+                    data: user,
                     success: true
                 })
 			} else {
@@ -69,7 +72,10 @@ exports.login_user = async function (req, res) {
 exports.get_user_detail = async (req, res)=>{
     try {
         // Remove password and Cart from User
-        const user = await User.findOne({_id: req.user._id}).select("-password").populate("recentlyViewed")
+        let user = await User.findOne({_id: req.user._id}).select("-password").populate("recentlyViewed")
+        user = user.toObject()
+        user["reviews"] = (await Review.find({user: req.user._id})).length
+        user["orders"] = (await Order.find({user: req.user._id})).length
         res.json(success("Request successful", user))
     } catch (error) {
         console.log(error)

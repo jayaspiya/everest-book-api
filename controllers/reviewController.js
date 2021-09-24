@@ -6,7 +6,7 @@ exports.get_review_by_book_id = async function(req,res){
         const bookReviews = await Review.find({book: req.params.bookId}).populate({
             path:'user',
             select: 'firstname _id profile'
-        }).select("-book").sort({createdAt: -1}).limit(10)
+        }).select("-book")
         res.json(success("Reviews Successful", bookReviews))
     }
     catch(e){
@@ -37,7 +37,7 @@ exports.insert_new_review = async function(req, res){
 
 exports.update_review = async function(req, res){
     try{
-        Review.updateOne({_id: req.params.reviewId, user: req.user._id},{
+        await Review.updateOne({_id: req.params.reviewId, user: req.user._id},{
             description: req.body.description,
             rating: req.body.rating
         })
@@ -52,7 +52,7 @@ exports.update_review = async function(req, res){
 
 exports.delete_review = async function(req,res){
     try{
-        Review.deleteOne({_id: req.params.reviewId, user: req.user._id})
+        await Review.deleteOne({_id: req.params.reviewId, user: req.user._id})
         res.json(success("Review Deleted"))
     }
     catch(e){

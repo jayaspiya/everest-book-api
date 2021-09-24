@@ -30,9 +30,9 @@ exports.get_book = async function(req, res){
         const reviews = await Review.find({book: _id}).populate({
             path:'user',
             select: 'firstname _id profile'
-        }).select("-book").sort({createdAt: -1}).limit(10)
+        }).select("-book")
         book = book.toObject()
-        book["reviews"] = reviews
+        book["reviews"] = reviews.reverse()
         if(req.user){
             const user = await User.findById(req.user._id)
             const updatedRecentlyViewed = [...user.recentlyViewed]
@@ -108,7 +108,9 @@ exports.update_book_detail = async function(req, res){
             isbn: req.body.isbn,
             synopsis: req.body.synopsis,
             price: req.body.price,
-            releasedYear: req.body.releasedYear
+            releasedYear: req.body.releasedYear,
+            discount: req.body.discount,
+            quantity: req.body.quantity
         })
         res.json(success("Book Updated"))
     } 
