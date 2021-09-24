@@ -72,7 +72,7 @@ exports.cancel_order = async function(req,res){
 exports.get_order_by_user = async function(req,res){
     try{
         const userId = req.user._id
-        const order = await Order.find({user: userId})
+        const order = await Order.find({user: userId}).populate("user orderBook.bookId").sort({createdAt: -1})
         res.json(success("Ordered Fetched", order))
     }catch (error) {
         console.log(error)
