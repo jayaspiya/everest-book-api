@@ -23,6 +23,21 @@ exports.get_all_books = async function(req,res){
     res.end()
 }
 
+
+exports.search_book = async function(req,res){
+    try {
+        const pattern = slug(req.query.pattern)
+        console.log(pattern)
+        const bookList = await Book.find({title: {$regex: pattern }})
+        res.json(success("Get All Books", bookList))
+        console.log(bookList.length)
+    } catch (error) {
+        console.log(error)
+        res.json(failure())
+    }
+    res.end()
+}
+
 exports.get_book = async function(req, res){
     try {
         const _id = req.params.bookId

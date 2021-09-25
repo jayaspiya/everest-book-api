@@ -36,7 +36,7 @@ const bookSchema = new mongoose.Schema({
     },
     quantity:{
         type: Number,
-        default: 0
+        default: 10
     },
     addedDate:{
         // To filter latest books

@@ -21,6 +21,8 @@ router.delete("/:id", auth.verifyStore, bookController.delete_book)
 
 // Searching  Unused for now
 
+router.get("/search/", bookController.search_book)
+
 router.get("/author/:authorName", bookController.get_book_by_author)
 
 router.get("/isbn/:isbn", bookController.get_book_by_isbn)
