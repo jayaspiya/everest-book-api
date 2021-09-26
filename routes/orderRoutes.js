@@ -12,4 +12,6 @@ router.put("/complete/:id", auth.verifyStore, orderController.complete_order)
 
 router.put("/cancel/:id", auth.verifyStore, orderController.cancel_order)
 
+router.delete("/:id", auth.verifyStore, orderController.delete_order)
+
 module.exports = router
