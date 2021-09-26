@@ -29,6 +29,7 @@ const storeSchema = mongoose.Schema({
         type: String,
         default: "Main"
     },
+    // For Android Application
     showOnMap:{
         type: Boolean,
         default: false

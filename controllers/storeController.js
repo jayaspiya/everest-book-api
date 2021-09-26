@@ -7,6 +7,7 @@ const tokenKey = process.env.TOKEN_KEY
 exports.register_new_store = async function(req, res){
     try {
         const checkStore = await Store.findOne({email: req.body.email})
+        // Check if store email exist
         if (checkStore) {
             res.json(failure("Email already exist"))
         }

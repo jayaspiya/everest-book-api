@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const orderItemSchema = mongoose.Schema({
+    // Book ID
     bookId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Book"  
@@ -14,6 +15,7 @@ const orderItemSchema = mongoose.Schema({
 })
 
 const orderSchema = mongoose.Schema({
+    // User ID
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
@@ -22,6 +24,7 @@ const orderSchema = mongoose.Schema({
         type:Date,
         default: Date.now
     },
+    // Calculated By Controller
     totalAmount:{
         type: Number
     },
@@ -33,6 +36,7 @@ const orderSchema = mongoose.Schema({
         enum: ["completed", "pending", "canceled"],
         default: "pending"
     },
+    // Order Book Array Of Order Item
     orderBook:[orderItemSchema],
 })
 

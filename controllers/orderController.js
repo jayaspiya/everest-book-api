@@ -13,6 +13,7 @@ exports.add_order = async function(req,res){
     try {
         const userId = req.user._id
         const orderBook = req.body.orderBook
+        // Calculate Total Quantity and Amount
         const rateList = orderBook.map((order)=>{
             return order.price
         })
@@ -32,6 +33,7 @@ exports.add_order = async function(req,res){
             totalQuantity
         })
         await order.save()
+        // Empty Cart
         await User.updateOne({_id: userId},{
             cart: []
         })

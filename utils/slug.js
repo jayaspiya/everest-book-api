@@ -6,5 +6,6 @@
  * @returns slugified string
  */
 module.exports = function (text, splitter = "-", joinner = " "){
+   // Custom Slug
    return text.split(splitter).join(joinner)
 }

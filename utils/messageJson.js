@@ -1,3 +1,4 @@
+// Custom JSON Message
 exports.success = function(message="Successful", data={}){
     return {
         message: message,

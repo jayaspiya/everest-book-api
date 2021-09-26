@@ -3,6 +3,7 @@ const {success, failure} = require("../utils/messageJson.js")
 
 exports.get_review_by_book_id = async function(req,res){
     try{
+        // Populate User
         const bookReviews = await Review.find({book: req.params.bookId}).populate({
             path:'user',
             select: 'firstname _id profile'

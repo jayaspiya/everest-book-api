@@ -44,11 +44,13 @@ const bookSchema = new mongoose.Schema({
         default: Date.now,
         select: false
     },
+    // Tag Array of strings
     tags:[
         {
             type: String
         }
     ],
+    // Cover Object | Cloudinary crops the book cover
     cover:{
         side:{
             type: String,
@@ -64,6 +66,7 @@ const bookSchema = new mongoose.Schema({
         }
     }
 },opts)
+// Getter Settes
 bookSchema.path("title").get(v=>{
     return capitalize(v)
 })

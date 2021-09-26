@@ -27,10 +27,8 @@ exports.get_all_books = async function(req,res){
 exports.search_book = async function(req,res){
     try {
         const pattern = slug(req.query.pattern)
-        console.log(pattern)
         const bookList = await Book.find({title: {$regex: pattern }})
         res.json(success("Get All Books", bookList))
-        console.log(bookList.length)
     } catch (error) {
         console.log(error)
         res.json(failure())
@@ -42,6 +40,7 @@ exports.get_book = async function(req, res){
     try {
         const _id = req.params.bookId
         let book = await Book.findById(_id)
+        // Populate user
         const reviews = await Review.find({book: _id}).populate({
             path:'user',
             select: 'firstname _id profile'
@@ -50,15 +49,18 @@ exports.get_book = async function(req, res){
         book["reviews"] = reviews.reverse()
         if(req.user){
             const user = await User.findById(req.user._id)
+            // Get User Recently Viewed
             const updatedRecentlyViewed = [...user.recentlyViewed]
             updatedRecentlyViewed.unshift(_id)
             newRecentlyViewed = []
             updatedRecentlyViewed.forEach(item => {
                 newRecentlyViewed.push(String(item))
             });
+            // Remove Duplicate
             const recentlyViewedSet = [...new Set(newRecentlyViewed)]
             user.recentlyViewed = recentlyViewedSet
             await user.save()
+            // Check in user Cart
             if(user.cart.includes(_id)){
                 book["inCart"] = true
             }
@@ -168,49 +170,5 @@ exports.update_cover_image = async function(req,res){
         conosle.log(error)
         res.json(failure())
     }
-    res.end()
-}
-// Searching [Unused fo now] 
-// TODO: Need To Change Searching
-exports.get_book_by_title = async function(req, res){
-    const bookTitle = slug(req.params.bookTitle).toLowerCase()
-    const bookList = await Book.findOne({title: bookTitle})
-    res.json({
-        message: "Successful",
-        success: true,
-        data: [bookList]
-    })
-    res.end()
-}
-
-exports.get_book_by_author = async function(req,res){
-    const authorName = slug(req.params.authorName).toLowerCase()
-    const bookList = await Book.find({author: authorName})
-    res.json({
-        message: "Successful",
-        success: true,
-        data: bookList
-    })
-    res.end()
-}
-exports.get_book_by_isbn = async function(req,res){
-    const isbn = req.params.isbn
-    const bookList = await Book.findOne({isbn})
-    res.json({
-        message: "Successful",
-        success: true,
-        data: [bookList]
-    })
-    res.end()
-}
-
-exports.get_book_by_tags = async function (req,res){
-    const tags = req.body.tags
-    const bookList = await Book.find({tags: {$all: tags}})
-    res.json({
-        message: "Successful",
-        success: true,
-        data: bookList
-    })
     res.end()
 }

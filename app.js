@@ -14,22 +14,26 @@ const orderRoutes = require("./routes/orderRoutes.js")
 
 const app = express()
 const port = process.env.PORT || 8080
+// Logger
 if(process.env.DEBUG == "true"){
     app.use(logger)
 }
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 // Serving Multer saved image
-app.use(express.static("./uploads"))
+// app.use(express.static("./uploads"))
 app.use(fileUpload({useTempFiles : true}))
 
+// Routes
 app.use("/user", userRoutes)
 app.use("/store", storeRoutes)
 app.use("/book", bookRoutes)
 app.use("/review", reviewRoutes)
 app.use("/order", orderRoutes)
 
+// Auto Restart Server
 process.on('uncaughtException', function (err) {
     console.error(err.stack);
     console.log("Node NOT Exiting...");

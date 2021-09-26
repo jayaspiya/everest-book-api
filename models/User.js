@@ -47,12 +47,14 @@ const userSchema = mongoose.Schema({
     DOB: {
         type: String
     },
+    // Cart Array of ObjectID
     cart:[
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Book"
         }
     ],
+    // Recently Viewed Array of ObjectID
     recentlyViewed:[
         {
             type: mongoose.Schema.Types.ObjectId,

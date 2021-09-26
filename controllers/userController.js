@@ -11,6 +11,7 @@ const tokenKey = process.env.TOKEN_KEY
 exports.register_new_user = async function (req, res) {
 	try {
 		const checkUser = await User.findOne({email: req.body.email})
+        // Check if user email exists
 		if (checkUser) {
             res.json(failure("Email already exist"))
 		}
@@ -18,7 +19,7 @@ exports.register_new_user = async function (req, res) {
 			const {firstname, lastname, password, address, email, phone } = req.body
 			const salt = await bcrypt.genSalt(10)
 			const hashed = await bcrypt.hash(password, salt)
-			// User Avatar API
+			// Set Default User Profile
 			const avatarUrl = `https://ui-avatars.com/api/?background=random&name=${firstname}+${lastname}`
 			const user = new User({
 				firstname: firstname,
@@ -71,9 +72,10 @@ exports.login_user = async function (req, res) {
 
 exports.get_user_detail = async (req, res)=>{
     try {
-        // Remove password and Cart from User
+        // Remove password from User
         let user = await User.findOne({_id: req.user._id}).select("-password").populate("recentlyViewed")
         user = user.toObject()
+        // Added User Review & Orders
         user["reviews"] = (await Review.find({user: req.user._id})).length
         user["orders"] = (await Order.find({user: req.user._id})).length
         res.json(success("Request successful", user))
@@ -105,9 +107,11 @@ exports.update_user_detail = async (req, res)=>{
 exports.change_password = async (req,res) => {
     const {oldPassword, newPassword} = req.body
     const user = await User.findOne({_id: req.user._id}).select("+passwordSetDate")
+    // Check is Old Password is valid
 	const validLogin = await bcrypt.compare(oldPassword, user.password)
     if(validLogin){
         const salt = await bcrypt.genSalt(10)
+        // Create new password
         const hashed = await bcrypt.hash(newPassword, salt)
         user.passwordSetDate = new Date()
         user.password = hashed
