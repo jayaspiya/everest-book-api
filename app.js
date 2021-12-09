@@ -26,6 +26,11 @@ app.use(express.urlencoded({extended:false}))
 // app.use(express.static("./uploads"))
 app.use(fileUpload({useTempFiles : true}))
 
+app.get("/", (req,res)=>{
+    res.send("Welcome to Everest Book API");
+    res.end();
+})
+
 // Routes
 app.use("/user", userRoutes)
 app.use("/store", storeRoutes)
